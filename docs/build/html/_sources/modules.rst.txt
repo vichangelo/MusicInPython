@@ -1,0 +1,21 @@
+#######
+Modules
+#######
+
+Notes
+=====
+.. automodule:: notes
+   :members:
+   :special-members: __init__
+
+Intervals
+=========
+.. automodule:: intervals
+   :members:
+   :special-members: __init__
+
+Chords
+======
+.. automodule:: chords
+   :members:
+   :special-members: __init__

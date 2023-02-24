@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Modules &mdash; musicinpython 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to musicinpython’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> musicinpython
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-notes">Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-intervals">Intervals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chords">Chords</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">musicinpython</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-notes">
+<span id="notes"></span><h2>Notes<a class="headerlink" href="#module-notes" title="Permalink to this headline">¶</a></h2>
+<p>Module with note variables and the means to make a chromatic scale.</p>
+<div class="section" id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h3>
+<dl class="py data">
+<dt id="notes.naturals">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">naturals</code><em class="property">: list</em><a class="headerlink" href="#notes.naturals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the seven natural notes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="notes.accidents">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">accidents</code><em class="property">: list of tuples</em><a class="headerlink" href="#notes.accidents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains the five musical accidents, with the names in tuples.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="notes.all_notes">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">all_notes</code><em class="property">: list</em><a class="headerlink" href="#notes.all_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all notes of the chromatic scale.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="notes.sharp_keys">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">sharp_keys</code><em class="property">: list</em><a class="headerlink" href="#notes.sharp_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all keys which have sharps in them.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="notes.flat_keys">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">flat_keys</code><em class="property">: list</em><a class="headerlink" href="#notes.flat_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all keys which have flats in them.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#notes.is_accidental" title="notes.is_accidental"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_accidental()</span></code></a>: check if note has an accident.</p>
+<p><a class="reference internal" href="#notes.is_sharp" title="notes.is_sharp"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_sharp()</span></code></a>: check if note is sharp.</p>
+<p><a class="reference internal" href="#notes.is_flat" title="notes.is_flat"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_flat()</span></code></a>: check if note is flat.</p>
+<p><a class="reference internal" href="#notes.enharmonize" title="notes.enharmonize"><code class="xref py py-func docutils literal notranslate"><span class="pre">enharmonize()</span></code></a>: take an accidental note and return its equivalent.</p>
+<p><a class="reference internal" href="#notes.get_chroma" title="notes.get_chroma"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_chroma()</span></code></a>: gets the chromatic scale of a given root.</p>
+<dl class="py function">
+<dt id="notes.enharmonize">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">enharmonize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">note</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.enharmonize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an equivalent name of a note.</p>
+<p>Check if note <a class="reference internal" href="#notes.is_accidental" title="notes.is_accidental"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_accidental()</span></code></a> then, if true, iterate through
+<a class="reference internal" href="#notes.accidents" title="notes.accidents"><code class="xref py py-data docutils literal notranslate"><span class="pre">accidents</span></code></a> and return the other value in the note’s tuple.
+Otherwise return the original note.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>note</strong> (<em>str</em>) – a given note</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the equivalent (enharmonic) name of the note</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="notes.get_chroma">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">get_chroma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.get_chroma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a root and return its chromatic scale.</p>
+<p>Transform <a class="reference internal" href="#notes.all_notes" title="notes.all_notes"><code class="xref py py-data docutils literal notranslate"><span class="pre">all_notes</span></code></a> in a string, then use list comprehension
+to filter out the unused sharps or flats. Lastly, use list slicing
+to set the root as the first note of the scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – given note to be used as scale’s root</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the chromatic scale</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="notes.is_accidental">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">is_accidental</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">note</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.is_accidental" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a note has an accident.</p>
+<p>Iterate through <a class="reference internal" href="#notes.accidents" title="notes.accidents"><code class="xref py py-data docutils literal notranslate"><span class="pre">accidents</span></code></a> and, if the argument is found,
+return True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>note</strong> (<em>str</em>) – a given note</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="notes.is_flat">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">is_flat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">note</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.is_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a note is sharp.</p>
+<p>Iterate through <a class="reference internal" href="#notes.accidents" title="notes.accidents"><code class="xref py py-data docutils literal notranslate"><span class="pre">accidents</span></code></a> and, if the argument is the last
+value in one of the tuples, return True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>note</strong> (<em>str</em>) – a given note</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="notes.is_sharp">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">is_sharp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">note</span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.is_sharp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a note is sharp.</p>
+<p>Iterate through <a class="reference internal" href="#notes.accidents" title="notes.accidents"><code class="xref py py-data docutils literal notranslate"><span class="pre">accidents</span></code></a> and, if the argument is the first
+value in one of the tuples, return True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>note</strong> (<em>str</em>) – a given note</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-intervals">
+<span id="intervals"></span><h2>Intervals<a class="headerlink" href="#module-intervals" title="Permalink to this headline">¶</a></h2>
+<p>Module with a list of all intervals and their functions.</p>
+<div class="section" id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: import functions and globals.</p>
+</div>
+<div class="section" id="id1">
+<h3>Global variables<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="py data">
+<dt id="intervals.interval_list">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">interval_list</code><em class="property">: list</em><a class="headerlink" href="#intervals.interval_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with all intervals, including enharmonics in tuples.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#intervals.is_unison" title="intervals.is_unison"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_unison()</span></code></a>: check for unison interval.</p>
+<p><a class="reference internal" href="#intervals.is_minor" title="intervals.is_minor"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_minor()</span></code></a>: check for minor intervals.</p>
+<p><a class="reference internal" href="#intervals.is_major" title="intervals.is_major"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_major()</span></code></a>: check for major intervals.</p>
+<p><a class="reference internal" href="#intervals.is_diminished" title="intervals.is_diminished"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_diminished()</span></code></a>: check for diminished intervals.</p>
+<p><a class="reference internal" href="#intervals.is_perfect" title="intervals.is_perfect"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_perfect()</span></code></a>: check for perfect intervals.</p>
+<p><a class="reference internal" href="#intervals.is_augmented" title="intervals.is_augmented"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_augmented()</span></code></a>: check for augmented intervals.</p>
+<p><a class="reference internal" href="#intervals.get_note" title="intervals.get_note"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_note()</span></code></a>: get the second note of an interval.</p>
+<p><a class="reference internal" href="#intervals.get_interval" title="intervals.get_interval"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_interval()</span></code></a>: get the interval between two notes.</p>
+<dl class="py function">
+<dt id="intervals.get_interval">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">get_interval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_note</span></em>, <em class="sig-param"><span class="n">last_note</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.get_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the interval between two notes.</p>
+<p>Make a chromatic scale with the first note, check the second note’s
+index on it and return the interval with that index on
+<a class="reference internal" href="#intervals.interval_list" title="intervals.interval_list"><code class="xref py py-data docutils literal notranslate"><span class="pre">interval_list</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the name of the interval between two given notes</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.get_note">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">get_note</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_note</span></em>, <em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.get_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get second note of an interval.</p>
+<p>Make a chromatic scale based on the first note, get the index of
+the interval on <a class="reference internal" href="#intervals.interval_list" title="intervals.interval_list"><code class="xref py py-data docutils literal notranslate"><span class="pre">interval_list</span></code></a>, as it will be the index of
+the second note on the first one’s scale, then use said index to
+retrieve the second note.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first_note</strong> (<em>str</em>) – first note of the interval.</p></li>
+<li><p><strong>interval</strong> (<em>str</em>) – name of the interval.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the second note of the interval.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_augmented">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_augmented</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_augmented" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if interval is in list of augmented intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_diminished">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_diminished</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_diminished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if interval is in list of diminished intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_major">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_major</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_major" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if interval is in list of major intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_minor">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_minor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_minor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if interval is in list of minor intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_perfect">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_perfect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_perfect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if interval is in list of perfect intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="intervals.is_unison">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">is_unison</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interval</span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.is_unison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if given interval is unison.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="chords">
+<h2>Chords<a class="headerlink" href="#chords" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to musicinpython’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Victor Angelo.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
