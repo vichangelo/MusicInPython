@@ -155,3 +155,29 @@ def get_chroma(root):
     else:
         new_note_list = new_note_list[index:] + new_note_list[:index]
         return new_note_list
+
+
+def all_about_note():
+    while True:
+        note = input("Please insert the note you want to know about. ")
+        if note not in note_list:
+            print("Invalid note. Please enter one between C and B.")
+        else:
+            break
+
+    print("Here's everything about this note:")
+    if is_accidental(note):
+        accident_notice = "This note is "
+        if is_flat(note):
+            accident_notice += "flat."
+            print(accident_notice)
+        if is_sharp(note):
+            accident_notice += "sharp."
+            print(accident_notice)
+        enharmonic = enharmonize(note)
+        print(f"This note's enharmonic is {enharmonic}.")
+    else:
+        print("This is a natural note.")
+
+    chromatic_scale = " ".join(get_chroma(note))
+    print("This note's chromatic scale is:\n" + chromatic_scale)

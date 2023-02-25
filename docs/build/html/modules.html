@@ -94,7 +94,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#chords">Chords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chords">Chords</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -404,8 +408,69 @@ retrieve the second note.</p>
 
 </div>
 </div>
-<div class="section" id="chords">
-<h2>Chords<a class="headerlink" href="#chords" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-chords">
+<span id="chords"></span><h2>Chords<a class="headerlink" href="#module-chords" title="Permalink to this headline">¶</a></h2>
+<p>Module containing chord classes.</p>
+<div class="section" id="id3">
+<h3>Imports<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#module-intervals" title="intervals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">intervals</span></code></a>: import interval functions and globals.</p>
+<p><a class="reference internal" href="#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: import <code class="xref py py-data docutils literal notranslate"><span class="pre">note_list</span></code>.</p>
+</div>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#chords.Triad" title="chords.Triad"><code class="xref py py-class docutils literal notranslate"><span class="pre">Triad</span></code></a>: contains basic chord methods and attributes.</p>
+<p><a class="reference internal" href="#chords.Extended" title="chords.Extended"><code class="xref py py-class docutils literal notranslate"><span class="pre">Extended</span></code></a>: contains methods pertaining to extended chords.</p>
+<dl class="py class">
+<dt id="chords.Extended">
+<em class="property">class </em><code class="sig-prename descclassname">chords.</code><code class="sig-name descname">Extended</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Extended" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="chords.Extended.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Extended.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a chord triad object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="chords.Triad">
+<em class="property">class </em><code class="sig-prename descclassname">chords.</code><code class="sig-name descname">Triad</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Triad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define chord triads and basic chord attributes and methods.</p>
+<p>This class contains methods to fill information gaps on a class
+object and methods to define and describe it. It also has sets of
+intervals to compare and determine chord qualities.</p>
+<dl class="py attribute">
+<dt id="chords.Triad.cls.major_intervals">
+<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">major_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.major_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set containing the intervals of a major chord.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chords.Triad.cls.minor_intervals">
+<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">minor_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.minor_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set containing the intervals of a minor chord.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="chords.Triad.cls.diminished_intervals">
+<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">diminished_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.diminished_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set containing the intervals of a diminished chord.</p>
+</dd></dl>
+
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code>: get root of the chord.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_minor()</span></code>: determine if chord is minor or not.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_diminished()</span></code>: determine if chord is diminished or not.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_intervals()</span></code>: get chord’s intervals.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_notes()</span></code>: get chord’s notes based on its intervals.</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_name()</span></code>: get chord’s name based on its intervals.</p>
+<dl class="py method">
+<dt id="chords.Triad.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Triad.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a chord triad object.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 </div>
 

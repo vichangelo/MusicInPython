@@ -31,8 +31,12 @@ Functions
 """
 import notes
 
-interval_list = ["I", "bII", "II", ("#II", "bIII"), ("III", "bIV"), "IV",
-                 ("#IV", "bV"), "V", ("#V", "bVI"), "VI", ("#VI", "bVII"), "VII"]
+interval_list = ["I", "bII", "II", ("#II", "bIII"), ("III", "bIV"),
+                 "IV", ("#IV", "bV"), "V", ("#V", "bVI"), "VI",
+                 ("#VI", "bVII"), "VII"]
+all_intervals = ["I", "bII", "II", "#II", "bIII", "III", "bIV", "IV",
+                 "#IV", "bV", "V", "#V", "bVI", "VI", "#VI", "bVII",
+                 "VII"]
 
 
 def is_unison(interval):
@@ -142,3 +146,63 @@ def get_interval(first_note, last_note):
     else:
         print("Invalid second note for get_interval().")
         return
+
+
+def all_about_interval():
+    while True:
+        interval = input("Please input an interval between 'I' and 'VII' ")
+        if interval not in all_intervals:
+            print("Invalid interval. Interval format should be '(b/#)XX'.\n")
+        else:
+            break
+
+    if is_unison(interval):
+        print("This interval is unison/octave.")
+    if is_major(interval):
+        print("This is a major interval.")
+    if is_minor(interval):
+        print("This is a minor interval.")
+    if is_diminished(interval):
+        print("This is a diminished interval.")
+    if is_perfect(interval):
+        print("This is a perfect interval.")
+    if is_augmented(interval):
+        print("This is an augmented interval.")
+
+
+def get_note_interface():
+    while True:
+        first_note = input("Please input the first note of the interval. ")
+        if first_note not in notes.note_list:
+            print("Invalid first note. Please enter one between C and B.\n")
+            continue
+        interval = input("Now please input the desired interval. ")
+        if interval not in all_intervals:
+            print("Invalid interval. Interval format should be '(b/#)XX'.\n")
+            continue
+        break
+
+    second_note = get_note(first_note, interval)
+    print(f"The second note of the interval is {second_note}.")
+
+
+def get_interval_interface():
+    while True:
+        first_note = input("Please input the first note of the interval. ")
+        if first_note not in notes.note_list:
+            print("Invalid first note. Please enter one between C and B.\n")
+            continue
+        second_note = input("Please input the second note of the interval. ")
+        if second_note not in notes.note_list:
+            print("Invalid second note. Please enter one between C and B.\n")
+            continue
+        break
+
+    interval = get_interval(first_note, second_note)
+    if interval in [("III", "bIV"), ("#V", "bVI")]:
+        interval = interval[0]
+    elif interval in [("#II", "bIII"), ("#IV", "bV"), ("#VI", "bVII")]:
+        interval = interval[1]
+
+    print(f"The interval between {first_note} and {second_note} is "
+          + f"{interval}.")
