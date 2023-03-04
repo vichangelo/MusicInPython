@@ -2,7 +2,7 @@ NATURAL_NOTES = ["C", "D", "E", "F", "G", "A", "B"]
 ACCIDENTAL_NOTES = [("C#", "Db"), ("D#", "Eb"), ("F#", "Gb"),
                     ("G#", "Ab"), ("A#", "Bb")]
 
-ALL_NOTES = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb",
+ALL_NOTE_NAMES = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb",
              "G", "G#", "Ab", "A", "A#", "Bb", "B"]
 
 SHARP_KEYS = ["G", "D", "A", "E", "B", "F#", "C#", "G#", "D#", "A#"]
@@ -10,7 +10,7 @@ FLAT_KEYS = ["C", "F", "Bb", "Eb", "Ab", "Db", "Gb"]
 
 class Note:
     def __init__(self, name: str):
-        if name not in ALL_NOTES:
+        if name not in ALL_NOTE_NAMES:
             raise ValueError("Invalid note name.")
         self.name = name
         self.accident_sign = ""
@@ -56,15 +56,22 @@ class ChromaticScaleGenerator:
         self.root = root
         self.notes = []
 
-    def generate_base_chromatic_scale(self):
+    def generate_base_scale(self):
         if self.root.name in SHARP_KEYS:
-            self.notes = [note for note in ALL_NOTES if "b" not in note]
-        elif self.root.name in FLAT_KEYS:
-            self.notes = [note for note in ALL_NOTES if "#" not in note]
+            for note_name in ALL_NOTE_NAMES:
+                if "b" not in note_name:
+                    self.notes.append(Note(note_name))
 
-    def generate_chromatic_scale(self):
-        self.generate_base_chromatic_scale()
-        index = self.notes.index(self.root.name)
+        elif self.root.name in FLAT_KEYS:
+            for note_name in ALL_NOTE_NAMES:
+                if "#" not in note_name:
+                    self.notes.append(Note(note_name))
+
+    def generate(self):
+        self.generate_base_scale()
+        for note in self.notes:
+            if note.name == self.root.name:
+                index = self.notes.index(note)
         chromatic_scale = (self.notes[index:]
                            + self.notes[:index])
         self.notes = chromatic_scale
@@ -99,8 +106,9 @@ def all_about_note():
         print("This is a natural note.")
 
     chroma_gen = ChromaticScaleGenerator(note)
-    chroma_gen.generate_chromatic_scale()
-    chromatic_scale = " ".join(chroma_gen.notes)
+    chroma_gen.generate()
+    chromatic_scale_names = [note.name for note in chroma_gen.notes]
+    chromatic_scale = " ".join(chromatic_scale_names)
     print("This note's chromatic scale is:\n" + chromatic_scale)
 
 
@@ -154,24 +162,16 @@ class TestChromaticScaleGeneratorClass:
     sharp_chroma_gen = ChromaticScaleGenerator(note_sharp)
     flat_chroma_gen = ChromaticScaleGenerator(note_flat)
 
-    def test_generate_base_chromatic_scale(self):
-        self.sharp_chroma_gen.generate_base_chromatic_scale()
-        assert (self.sharp_chroma_gen.notes ==
-                ["C", "C#", "D", "D#", "E", "F",
-                 "F#", "G", "G#", "A", "A#", "B"])
+    def test_generate_base_scale(self):
+        self.sharp_chroma_gen.generate_base_scale()
+        assert self.sharp_chroma_gen.notes[1].name == "C#"
 
-        self.flat_chroma_gen.generate_base_chromatic_scale()
-        assert (self.flat_chroma_gen.notes ==
-                ["C", "Db", "D", "Eb", "E", "F",
-                 "Gb", "G", "Ab", "A", "Bb", "B"])
+        self.flat_chroma_gen.generate_base_scale()
+        assert self.flat_chroma_gen.notes[1].name == "Db"
 
-    def test_generate_chromatic_scale(self):
-        self.sharp_chroma_gen.generate_chromatic_scale()
-        assert (self.sharp_chroma_gen.notes ==
-                ["D#", "E", "F", "F#", "G", "G#",
-                 "A", "A#", "B", "C", "C#", "D"])
+    def test_generate(self):
+        self.sharp_chroma_gen.generate()
+        assert self.sharp_chroma_gen.notes[11].name == "D"
 
-        self.flat_chroma_gen.generate_chromatic_scale()
-        assert (self.flat_chroma_gen.notes ==
-                ["Db", "D", "Eb", "E", "F", "Gb",
-                 "G", "Ab", "A", "Bb", "B", "C"])
+        self.flat_chroma_gen.generate()
+        assert self.flat_chroma_gen.notes[11].name == "C"

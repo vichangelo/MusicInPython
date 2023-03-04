@@ -1,208 +1,174 @@
-"""Module with a list of all intervals and their functions.
-
-Imports
--------
-:mod:`notes`: import functions and globals.
-
-Global variables
-----------------
-.. data:: interval_list
-   :type: list
-
-   List with all intervals, including enharmonics in tuples.
-
-Functions
----------
-:func:`is_unison`: check for unison interval.
-
-:func:`is_minor`: check for minor intervals.
-
-:func:`is_major`: check for major intervals.
-
-:func:`is_diminished`: check for diminished intervals.
-
-:func:`is_perfect`: check for perfect intervals.
-
-:func:`is_augmented`: check for augmented intervals.
-
-:func:`get_note`: get the second note of an interval.
-
-:func:`get_interval`: get the interval between two notes.
-"""
+import sys
+sys.path.append("..")
 import notes
 
-interval_list = ["I", "bII", "II", ("#II", "bIII"), ("III", "bIV"),
-                 "IV", ("#IV", "bV"), "V", ("#V", "bVI"), "VI",
-                 ("#VI", "bVII"), "VII"]
-all_intervals = ["I", "bII", "II", "#II", "bIII", "III", "bIV", "IV",
-                 "#IV", "bV", "V", "#V", "bVI", "VI", "#VI", "bVII",
-                 "VII"]
+ALL_INTERVAL_NAMES = ["I", "bII", "II", ("#II", "bIII"), ("III", "bIV"),
+                      "IV", ("#IV", "bV"), "V", ("#V", "bVI"), "VI",
+                      ("#VI", "bVII"), "VII"]
+
+ALL_INTERVAL_NAMES_UNPACKED = ["I", "bII", "II", "#II", "bIII",
+                               "III", "bIV", "IV", "#IV", "bV",
+                               "V", "#V", "bVI", "VI", "#VI",
+                               "bVII", "VII"]
 
 
-def is_unison(interval):
-    """Check if given interval is unison."""
-    if interval == "I":
-        return True
-    else:
-        return False
+class InvalidIntervalNameError(Exception):
+    def __init__(self, message="Invalid name for interval."):
+        self.message = message
+        super().__init__(self.message)
 
 
-def is_minor(interval):
-    """Check if interval is in list of minor intervals."""
-    if interval in ["bII", "bIII", "bVI", "bVII"]:
-        return True
-    else:
-        return False
+class Interval:
+    def __init__(self, name="", note1=notes.Note("C"),
+                 note2: notes.Note=object):
+        if name not in ALL_INTERVAL_NAMES_UNPACKED and name != "":
+            raise InvalidIntervalNameError
+        self.name = name
+        self.note1 = note1
+        self.note2 = note2
 
-
-def is_major(interval):
-    """Check if interval is in list of major intervals."""
-    if interval in ["II", "III", "VI", "VII"]:
-        return True
-    else:
-        return False
-
-
-def is_diminished(interval):
-    """Check if interval is in list of diminished intervals."""
-    if interval in ["bIV", "bV"]:
-        return True
-    else:
-        return False
-
-
-def is_perfect(interval):
-    """Check if interval is in list of perfect intervals."""
-    if interval in ["IV", "V"]:
-        return True
-    else:
-        return False
-
-
-def is_augmented(interval):
-    """Check if interval is in list of augmented intervals."""
-    if interval in ["#II", "#IV", "#V", "#VI"]:
-        return True
-    else:
-        return False
-
-
-def get_note(first_note, interval):
-    """Get second note of an interval.
-
-    Make a chromatic scale based on the first note, get the index of
-    the interval on :data:`interval_list`, as it will be the index of
-    the second note on the first one's scale, then use said index to
-    retrieve the second note.
-
-    :param first_note: first note of the interval.
-    :type first_note: str
-    :param interval: name of the interval.
-    :type interval: str
-    :return: the second note of the interval.
-    :rtype: str
-    """
-    chroma_scale = notes.get_chroma(first_note)
-    if chroma_scale is None:
-        return
-
-    for item in interval_list:
-        if interval == item:
-            index = interval_list.index(interval)
-        elif type(item) == tuple:
-            if interval in item:
-                index = interval_list.index(item)
-
-    try:
-        last_note = chroma_scale[index]
-    except UnboundLocalError:
-        print("Invalid interval for get_note().")
-        return
-    return last_note
-
-
-def get_interval(first_note, last_note):
-    """Get the interval between two notes.
-
-    Make a chromatic scale with the first note, check the second note's
-    index on it and return the interval with that index on
-    :data:`interval_list`.
-
-    :return: the name of the interval between two given notes
-    :rtype: str
-    """
-    chroma_scale = notes.get_chroma(first_note)
-    if chroma_scale is None:
-        return
-
-    if last_note in str(notes.all_notes):
-        if last_note in chroma_scale:
-            index = chroma_scale.index(last_note)
-            return interval_list[index]
+    def is_unison(self):
+        if self.name == "I":
+            return True
         else:
-            last_note = notes.enharmonize(last_note)
-            index = chroma_scale.index(last_note)
-            return interval_list[index]
-    else:
-        print("Invalid second note for get_interval().")
-        return
+            return False
+
+    def is_major(self):
+        if self.name in ["II", "III", "VI", "VII"]:
+            return True
+        else:
+            return False
+
+    def is_minor(self):
+        if self.name in ["bII", "bIII", "bVI", "bVII"]:
+            return True
+        else:
+            return False
+
+    def is_diminished(self):
+        if self.name in ["bIV", "bV"]:
+            return True
+        else:
+            return False
+
+    def is_perfect(self):
+        if self.name in ["IV", "V"]:
+            return True
+        else:
+            return False
+
+    def is_augmented(self):
+        if self.name in ["#II", "#IV", "#V", "#VI"]:
+            return True
+        else:
+            return False
+
+    def get_second_note(self):
+        chromatic_generator = notes.ChromaticScaleGenerator(self.note1)
+        chromatic_generator.generate()
+        for item in ALL_INTERVAL_NAMES:
+            if self.name == item:
+                index = ALL_INTERVAL_NAMES.index(self.name)
+            elif type(item) == tuple:
+                if self.name in item:
+                    index = ALL_INTERVAL_NAMES.index(item)
+        self.note2 = chromatic_generator.notes[index]
+
+    def choose_name_for_interval(self):
+        if self.name == ("#II", "bIII"):
+            self.name = "bIII"
+        if self.name == ("III", "bIV"):
+            self.name = "III"
+        if self.name == ("#IV", "bV"):
+            self.name = "bV"
+        if self.name == ("#V", "bVI"):
+            self.name = "#V"
+        if self.name == ("#VI", "bVII"):
+            self.name = "bVII"
+
+    def get_name(self):
+        chromatic_generator = notes.ChromaticScaleGenerator(self.note1)
+        chromatic_generator.generate()
+        chromatic_scale_names = [note.name for
+                                 note in chromatic_generator.notes]
+        if self.note2.name in chromatic_scale_names:
+            index = chromatic_scale_names.index(self.note2.name)
+            self.name = ALL_INTERVAL_NAMES[index]
+        else:
+            self.note2 = self.note2.enharmonize()
+            index = chromatic_scale_names.index(self.note2.name)
+            self.name = ALL_INTERVAL_NAMES[index]
+        if type(self.name) == tuple:
+            self.choose_name_for_interval()
+
+
+def interval_input(message="Please input an interval between 'I' "
+                   + "and 'VII'. "):
+    while True:
+        try:
+            interval_name = input(message)
+            interval_obj = Interval(interval_name)
+        except InvalidIntervalNameError:
+            print("Invalid interval. Interval format should be "
+                  "'(b/#)X'.\n")
+        else:
+            break
+    return interval_obj
 
 
 def all_about_interval():
-    while True:
-        interval = input("Please input an interval between 'I' and 'VII' ")
-        if interval not in all_intervals:
-            print("Invalid interval. Interval format should be '(b/#)XX'.\n")
-        else:
-            break
-
-    if is_unison(interval):
+    interv = interval_input()
+    if interv.is_unison():
         print("This interval is unison/octave.")
-    if is_major(interval):
+    if interv.is_major():
         print("This is a major interval.")
-    if is_minor(interval):
+    if interv.is_minor():
         print("This is a minor interval.")
-    if is_diminished(interval):
+    if interv.is_diminished():
         print("This is a diminished interval.")
-    if is_perfect(interval):
+    if interv.is_perfect():
         print("This is a perfect interval.")
-    if is_augmented(interval):
+    if interv.is_augmented():
         print("This is an augmented interval.")
 
 
 def get_note_interface():
+    first_note = notes.note_input("\nPlease enter the first note of the"
+                                  + " interval. ")
+    interval_obj = interval_input("Now please enter the desired "
+                                  + "interval. ")
+    interval_obj.note1 = first_note
+    interval_obj.get_second_note()
+    print(f"The second note is {interval_obj.note2.name}.")
+
+
+def get_name_interface():
+    first_note = notes.note_input("\nInput the first note of the "
+                                  + "interval, if you may. ")
+    second_note = notes.note_input("Now input the second note, "
+                                   + "please. ")
+    interval_obj = Interval(note1=first_note, note2=second_note)
+    interval_obj.get_name()
+    print(f"The interval between {first_note.name} and "
+          + f"{second_note.name} is of {interval_obj.name}.")
+
+
+if __name__ == "__main__":
+    print("\nYou're now into the intervals module!")
     while True:
-        first_note = input("Please input the first note of the interval. ")
-        if first_note not in notes.note_list:
-            print("Invalid first note. Please enter one between C and B.\n")
-            continue
-        interval = input("Now please input the desired interval. ")
-        if interval not in all_intervals:
-            print("Invalid interval. Interval format should be '(b/#)XX'.\n")
-            continue
-        break
+        decision2 = input("\nEnter 'A' to know all about an interval, "
+                          + "'N' to know the second note of given "
+                          + "note and interval, 'I' to know what "
+                          + "is the interval between two notes, "
+                          + "or 'E' to exit the module. ")
+        if decision2 == "A":
+            all_about_interval()
 
-    second_note = get_note(first_note, interval)
-    print(f"The second note of the interval is {second_note}.")
+        if decision2 == "N":
+            get_note_interface()
 
+        if decision2 == "I":
+            get_name_interface()
 
-def get_interval_interface():
-    while True:
-        first_note = input("Please input the first note of the interval. ")
-        if first_note not in notes.note_list:
-            print("Invalid first note. Please enter one between C and B.\n")
-            continue
-        second_note = input("Please input the second note of the interval. ")
-        if second_note not in notes.note_list:
-            print("Invalid second note. Please enter one between C and B.\n")
-            continue
-        break
-
-    interval = get_interval(first_note, second_note)
-    if interval in [("III", "bIV"), ("#V", "bVI")]:
-        interval = interval[0]
-    elif interval in [("#II", "bIII"), ("#IV", "bV"), ("#VI", "bVII")]:
-        interval = interval[1]
-
-    print(f"The interval between {first_note} and {second_note} is "
-          + f"{interval}.")
+        if decision2 == "E":
+            break
