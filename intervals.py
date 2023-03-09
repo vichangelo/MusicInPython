@@ -116,20 +116,20 @@ def interval_input(message="Please input an interval between 'I' "
     return interval_obj
 
 
-def all_about_interval():
-    interv = interval_input()
+def all_about_interval(interval: Interval):
+    interv = interval
     if interv.is_unison():
-        print("This interval is unison/octave.")
+        print("This interval ({interv.name}) is unison/octave.")
     if interv.is_major():
-        print("This is a major interval.")
+        print("This is a major interval ({interv.name}).")
     if interv.is_minor():
-        print("This is a minor interval.")
+        print("This is a minor interval ({interv.name}).")
     if interv.is_diminished():
-        print("This is a diminished interval.")
+        print("This is a diminished interval ({interv.name}).")
     if interv.is_perfect():
-        print("This is a perfect interval.")
+        print("This is a perfect interval. ({interv.name})")
     if interv.is_augmented():
-        print("This is an augmented interval.")
+        print("This is an augmented interval. ({interv.name})")
 
 
 def get_note_interface():
@@ -162,7 +162,8 @@ if __name__ == "__main__":
                           + "is the interval between two notes, "
                           + "or 'E' to exit the module. ")
         if decision2 == "A":
-            all_about_interval()
+            interv = interval_input()
+            all_about_interval(interv)
 
         if decision2 == "N":
             get_note_interface()

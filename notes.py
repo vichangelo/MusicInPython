@@ -95,27 +95,30 @@ def note_input(message="Please insert the note you want to know about. "):
             return note_obj
 
 
-def all_about_note():
-    note = note_input()
-    print("Here's everything about this note:")
-    if note.is_accidental():
-        accident_notice = "This note is "
-        if note.is_flat():
-            accident_notice += "flat."
-        if note.is_sharp():
-            accident_notice += "sharp."
-        print(accident_notice)
-
-        enharmonic = note.enharmonize()
-        print(f"This note's enharmonic is {enharmonic.name}.")
-    else:
-        print("This is a natural note.")
-
-    chroma_gen = ChromaticScaleGenerator(note)
+def display_chromatic_scale(note_obj: Note):
+    chroma_gen = ChromaticScaleGenerator(note_obj)
     chroma_gen.generate()
     chromatic_scale_names = [note.name for note in chroma_gen.notes]
     chromatic_scale = " ".join(chromatic_scale_names)
-    print("This note's chromatic scale is:\n" + chromatic_scale)
+    print("This note's chromatic scale is:\n" + chromatic_scale)    
+
+
+def all_about_note(note_input):
+    note_obj = note_input
+    print(f"Here's everything about the note {note_obj.name}:")
+    if note_obj.is_accidental():
+        accident_notice = "This note is "
+        if note_obj.is_flat():
+            accident_notice += "flat."
+        if note_obj.is_sharp():
+            accident_notice += "sharp."
+        print(accident_notice)
+
+        enharmonic = note_obj.enharmonize()
+        print(f"This note's enharmonic is {enharmonic.name}.")
+    else:
+        print("This is a natural note.")
+    display_chromatic_scale(note_obj)
 
 
 if __name__ == "__main__":
@@ -124,6 +127,7 @@ if __name__ == "__main__":
         decision = input("\nEnter 'N' to pick a note to know about "
                          + "or 'E' to exit the module. ")
         if decision == "N":
-            all_about_note()
+            note_input = note_input()
+            all_about_note(note_input)
         if decision == "E":
             break

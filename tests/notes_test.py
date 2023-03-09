@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
 
 class TestNoteClass:
-    note_natural = Note("D")
+    note_natural = Note("H")
     note_sharp = Note("D#")
     note_flat = Note("Db")
 
