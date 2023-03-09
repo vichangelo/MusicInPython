@@ -1,0 +1,18 @@
+* Features to add
+** TODO Display information on chords
+** TODO Alternative names to chords
+** TODO Add full written chord names
+** TODO Access notes/intervals modules to get information on chord components
+** TODO Scale generator
+** TODO Search for scales based on reduced notes
+** TODO Harmonic camp generator
+** TODO Interaction between chords and harmonic camps
+** TODO Interaction between notes and intervals/chords
+** TODO Add playing tones to notes and intervals
+** TODO Transposition of chords
+* Ideas
+** Graphical interface
+** Web/mobile deployment
+** Do the scale generator by combining intervals and calculating notes
+OR
+** Do the scale generator by combining notes and calculating intervals
