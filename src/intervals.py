@@ -1,4 +1,4 @@
-from . import notes_test as notes
+import notes
 
 ALL_INTERVAL_NAMES = [
     "I",
@@ -213,53 +213,3 @@ if __name__ == "__main__":
 
         if decision2 == "E":
             break
-
-
-class TestIntervalClass:
-    interval_list = [
-        Interval("I"),
-        Interval("III"),
-        Interval("bIII"),
-        Interval("bV"),
-        Interval("IV"),
-        Interval("#V"),
-    ]
-
-    def test_is_unison(self):
-        assert self.interval_list[0].is_unison()
-
-    def test_is_major(self):
-        assert self.interval_list[1].is_major()
-
-    def test_is_minor(self):
-        assert self.interval_list[2].is_minor()
-
-    def test_is_diminished(self):
-        assert self.interval_list[3].is_diminished()
-
-    def test_is_perfect(self):
-        assert self.interval_list[4].is_perfect()
-
-    def test_is_augmented(self):
-        assert self.interval_list[5].is_augmented()
-
-    def test_get_second_note(self):
-        for interv in self.interval_list:
-            interv.get_second_note()
-            if interv.name == self.interval_list[0].name:
-                assert interv.note2.name == "C"
-            if interv.name == self.interval_list[1].name:
-                assert interv.note2.name == "E"
-            if interv.name == self.interval_list[2].name:
-                assert interv.note2.name == "Eb"
-            if interv.name == self.interval_list[3].name:
-                assert interv.note2.name == "Gb"
-            if interv.name == self.interval_list[4].name:
-                assert interv.note2.name == "F"
-            if interv.name == self.interval_list[5].name:
-                assert interv.note2.name == "Ab"
-
-    def test_get_name(self):
-        interv = Interval(note1=notes.Note("C"), note2=notes.Note("F#"))
-        interv.get_name()
-        assert interv.name == "bV"

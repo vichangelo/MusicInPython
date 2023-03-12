@@ -1,0 +1,11 @@
+[tool.flake8]
+max-doc-length = 72
+statistics = true
+max-complexity = 10
+max-expression-complexity = 5
+cohesion-below = 66
+max-function-length = 50
+max-parameters-amount = 3
+
+[tool.pytest.ini_options]
+addopts = "--cov=tests --cov-branch --cov-report=term --cov-report=lcov:./coverage.lcov"

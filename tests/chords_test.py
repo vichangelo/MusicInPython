@@ -1,331 +1,278 @@
 import json
-import sys
-sys.path.append("..")
-import intervals
-import notes
+from . import intervals_test as intervals
+from . import notes_test as notes
 
 with open("extendedchords.json", "r") as chords_file:
-    ALL_CHORDS = json.load(chords_file)
+    all_chords = json.load(chords_file)
+items = list(all_chords.items())
+
+CHORD_NAMES_INTERVALS = [i[0] for i in items]
+CHORD_NOTES = [i[1] for i in items]
 
 
-class ChordRaw:
-    def __init__(self):
-        self.name = ""
-        self.interval_str = ""
-        self.note_str = ""
-        self.root = ""
-
-    def get_root(self):
-        if (len(self.name) > 1
-                and self.name[1] in ["#", "b"]):
-            self.root = self.name[:2]
-        else:
-            self.root = self.name[0]
-
-    @staticmethod
-    def format_intervals(interval_list):
-        for interv in interval_list:
-            index = interval_list.index(interv)
-            interv = interv.replace("(", "")
-            interv = interv.replace(")", "")
-            interval_list[index] = interv
-        return " ".join(interval_list)
-
-    def get_instantiated_attributes_chord(self):
-        note_list = self.note_str.split()
-        chord_notes = []
-        for note in note_list:
-            chord_notes.append(notes.Note(note))
-
-        interval_list = self.interval_str.split()
-        chord_intervals = []
-        for interv in interval_list:
-            index = interval_list.index(interv)
-            note2 = chord_notes[index]
-            chord_intervals.append(intervals.Interval(interv,
-                                                      self.root,
-                                                      note2))
-
-        chord_root = notes.Note(self.root)
-        return InstantiatedAttrChord(self.name, chord_root,
-                                     chord_intervals, chord_notes)
-
-
-class ChordWithName(ChordRaw):
+class ChordName:
     def __init__(self, name: str):
-        super().__init__()
-        self.name = name
-
-    def get_missing_information(self):
-        for key in ALL_CHORDS:
-            if self.name == key.split()[0]:
-                intervals = key.split()[1:]
-                self.interval_str = ChordRaw.format_intervals(intervals)
-                self.note_str = ALL_CHORDS[key]
-        self.get_root()
+        self.item = name
 
 
-class ChordWithNotes(ChordRaw):
-    def __init__(self, note_str: str):
-        super().__init__()
-        self.note_str = note_str
-
-    def get_missing_information(self):
-        for key in ALL_CHORDS:
-            if self.note_str == ALL_CHORDS[key]:
-                self.name = key.split()[0]
-                intervals = key.split()[1:]
-                self.interval_str = ChordRaw.format_intervals(intervals)
-        self.get_root()
-
-
-class ChordsWithIntervals(ChordRaw):
-    def __init__(self, interval_str: str):
-        self.names = []
-        self.interval_str = interval_str
-        self.notes_list = []
-        self.roots = []
-
-    def get_root(self, name):
-        if (len(name) > 1
-                and name[1] in ["#", "b"]):
-            self.roots.append(name[:2])
-        else:
-            self.roots.append(name[0])
-
-    def get_missing_information(self):
-        for key in ALL_CHORDS:
-            intervals = key.split()[1:]
-            if self.interval_str == ChordRaw.format_intervals(intervals):
-                self.names.append(key.split()[0])
-                self.notes_list.append(ALL_CHORDS[key])
-        for name in self.names:
-            self.get_root(name)
-
-    def get_instantiated_attributes_chord(self):
-        note_list = self.notes_list[6].split()
-        chord_notes = []
-        for note in note_list:
-            chord_notes.append(notes.Note(note))
-
-        interval_list = self.interval_str.split()
-        chord_intervals = []
-        for interv in interval_list:
-            index = interval_list.index(interv)
-            note2 = chord_notes[index]
-            chord_intervals.append(intervals.Interval(interv,
-                                                      self.roots[6],
-                                                      note2))
-
-        chord_root = notes.Note(self.roots[6])
-        return InstantiatedAttrChord(self.names[6], chord_root,
-                                     chord_intervals, chord_notes)
-
-
-class InstantiatedAttrChord:
-    def __init__(self, chord_name: str,
-                 chord_root: notes.Note,
-                 chord_intervals: list[intervals.Interval],
-                 chord_notes: list[notes.Note]):
-        self.name = chord_name
-        self.root = chord_root
-        self.intervals = chord_intervals
-        self.notes = chord_notes
-
-    def is_power_chord(self):
-        if len(self.intervals) == 2:
-            return True
-
-        return False
-
-    def is_triad(self):
-        if len(self.intervals) == 3:
-            return True
-        return False
-
-    def is_tetrad(self):
-        if len(self.intervals) == 4:
-            return True
-        return False
+class ChordIntervals:
+    def __init__(self, intervals: list[intervals.Interval]):
+        self.items = intervals
 
     def is_minor(self):
-        for interv in self.intervals:
+        for interv in self.items:
             if interv.name == "bIII":
                 return True
         return False
 
     def is_major(self):
-        for interv in self.intervals:
+        for interv in self.items:
             if interv.name == "III":
                 return True
         return False
 
-    def is_sus(self):
-        for interv in self.intervals:
-            if interv.name in ["III", "bIII"]:
-                return False
-        if not self.is_power_chord():
-            return True
-
     def is_diminished(self):
-        for interv in self.intervals:
+        for interv in self.items:
             if interv.name == "bV":
                 return True
         return False
 
     def is_augmented(self):
-        for interv in self.intervals:
+        for interv in self.items:
             if interv.name == "#V":
                 return True
         return False
 
-    def is_seventh_chord(self):
-        for interv in self.intervals:
-            if interv.name in ["bVII", "VII"]:
+    def has_minor_seventh(self):
+        for interv in self.items:
+            if interv.name == "bVII":
                 return True
         return False
 
-    def is_extended_chord(self):
-        for interv in self.intervals:
-            if (interv.name not in ["I", "bIII", "III", "bV", "V",
-                                    "#V", "bVII", "VII"]
-                    and not self.is_sus()):
+    def has_major_seventh(self):
+        for interv in self.items:
+            if interv.name == "VII":
                 return True
         return False
 
 
-class ChordDisplayer:
-    def __init__(self, instantiated_attr_chord: InstantiatedAttrChord):
-        self.chord = instantiated_attr_chord
+class ChordNotes:
+    def __init__(self, notes: list[notes.Note]):
+        self.items = notes
 
-    def display_chord_summary(self):
-        chord_name = self.chord.name
-        print("This chord's name is {chord_name}.")
+    def is_triad(self):
+        if len(self.items) == 3:
+            return True
+        return False
 
-        chord_intervals = ""
-        for interval in self.chord.intervals:
-            chord_intervals += interval.name + " "
-        chord_intervals = chord_intervals[:-1]
-        print("This chord's intervals are {chord_intervals}.")
+    def is_extended(self):
+        if len(self.items) > 3:
+            return True
+        return False
 
-        chord_notes = ""
-        for note in self.chord.notes:
-            chord_notes += note.name
-        print("This chord's notes are {chord_notes}.")
-
-    def display_further_information_intervals(self):
-        for interv in self.intervals:
-            note1 = interv.note1.name
-            note2 = interv.note2.name
-            intervals.all_about_interval(interv)
-            print("This interval happens between {note1} and {note2}.")
+    def is_power_chord(self):
+        if len(self.items) == 2:
+            return True
+        return False
 
 
-def all_about_chord():
-    decision = input("Enter 'O' if you want to know about a chord "
-                     + "using its notes, 'A' if you want to use its "
-                     + "name, or 'I' if you want to use its intervals. ")
+class Chord:
+    def __init__(
+        self,
+        chord_name: ChordName,
+        chord_intervals: ChordIntervals,
+        chord_notes: ChordNotes,
+    ):
+        self.name = chord_name
+        self.intervals = chord_intervals
+        self.notes = chord_notes
 
-    if decision == "O":
-        chord_notes = input("Please input the chord's notes separated "
-                            + "by spaces. ")
-        chord_obj = ChordWithNotes(chord_notes)
-        chord_obj.get_missing_information()
-    if decision == "A":
-        chord_name = input("Please input the chord's name. ")
-        chord_obj = ChordWithName(chord_name)
-        chord_obj.get_missing_information()
-    if decision == "I":
-        chord_intervals = input("Please input the chord's intervals. ")
-        chord_obj = ChordsWithIntervals(chord_intervals)
-        chord_obj.get_missing_information()
+    def associate_notes_to_intervals(self):
+        for interv in self.intervals.items:
+            index = self.intervals.items.index(interv)
+            interv.note1 = self.notes.items[0]
+            interv.note2 = self.notes.items[index]
 
+    def get_notes_str(self):
+        notes_str = ""
+        for note in self.notes.items:
+            notes_str += note.name + " "
+        notes_str = notes_str[:-1]
+        return notes_str
 
-class TestChordClasses:
-    chord1 = ChordWithName("Cm7")
-    chord2 = ChordWithNotes("C Eb G Bb")
-    chord3 = ChordsWithIntervals("I bIII V bVII")
+    def get_equivalent_names(self):
+        notes_str = self.get_notes_str()
+        alternative_names = get_chord_names(notes_str)
+        return alternative_names
 
-    def test_get_missing_information_name(self):
-        self.chord1.get_missing_information()
-        assert self.chord1.interval_str == "I bIII V bVII"
-        assert self.chord1.note_str == "C Eb G Bb"
-        assert self.chord1.root == "C"
+    def display_alternative_names(self):
+        notes_str = self.get_notes_str()
+        notes_list = notes_str.split()
 
-    def test_get_missing_information_notes(self):
-        self.chord2.get_missing_information()
-        assert self.chord2.interval_str == "I bIII V bVII"
-        assert self.chord2.name == "Cm7"
-        assert self.chord2.root == "C"
+        alternative_names = self.get_equivalent_names()
+        for note in notes_list:
+            index = notes_list.index(note)
+            notes_list = notes_list[index:] + notes_list[:index]
+            notes_str = " ".join(notes_list)
+            alternative_names += get_chord_names(notes_str)
 
-    def test_get_missing_information_intervals(self):
-        self.chord3.get_missing_information()
-        assert "Cm7" in self.chord3.names
-        assert "C Eb G Bb" in self.chord3.notes_list
-        assert "C" in self.chord3.roots
+        alternative_names_str = ""
+        for chord_name in alternative_names:
+            alternative_names_str += f"{chord_name.item}, "
 
-    def test_get_instantiated_attributes_chord_name_notes(self):
-        inst_chord1 = self.chord1.get_instantiated_attributes_chord()
-        inst_chord2 = self.chord2.get_instantiated_attributes_chord()
-        assert inst_chord1.name == inst_chord2.name
-        assert inst_chord1.root.name == inst_chord2.root.name
-        assert (inst_chord1.intervals[0].name ==
-                inst_chord2.intervals[0].name)
-        assert inst_chord1.notes[1].name == inst_chord2.notes[1].name
-
-    def test_get_instantiated_attributes_chord_intervals(self):
-        inst_chord3 = self.chord3.get_instantiated_attributes_chord()
-        assert inst_chord3.name == "Cm7"
-        assert inst_chord3.notes[1].name == "Eb"
-        assert inst_chord3.intervals[3].note2.name == "Bb"
-        assert inst_chord3.root.name == "C"
+    def display_sumary(self):
+        self.associate_notes_to_intervals()
+        intervals_notes = ""
+        print("This chord's name, intervals and notes are:")
+        print(self.name.item)
+        for interv in self.intervals.items:
+            intervals_notes += f"{interv.name}({interv.note2.name}) "
+        print(intervals_notes)
+        self.display_alternative_names()
 
 
-class TestInstantiatedAttrChordClass:
-    chord_list = [ChordWithName("Cm5-"), ChordWithName("Caug"),
-                  ChordWithName("C7M"), ChordWithName("Csus"),
-                  ChordWithName("C11"), ChordWithName("C5")]
-    inst_chord_list = []
-    for chord in chord_list:
-        chord.get_missing_information()
-        inst_chord_list.append(chord.get_instantiated_attributes_chord())
+def get_chord_names(chord_notes: str):
+    names = []
+    index = 0
+    all_chord_notes = CHORD_NOTES.copy()
+    for item in all_chord_notes:
+        if item == chord_notes:
+            name_interval = CHORD_NAMES_INTERVALS[index]
+            names.append(name_interval.split()[0])
+        index += 1
+    chord_names = [ChordName(i) for i in names]
+    return chord_names
 
-    def test_is_power_chord(self):
-        assert not self.inst_chord_list[0].is_power_chord()
-        assert self.inst_chord_list[5].is_power_chord()
 
-    def test_is_triad(self):
-        assert not self.inst_chord_list[2].is_triad()
-        assert self.inst_chord_list[1].is_triad()
+def get_chord_notes(chord_name: str):
+    note_str = ""
+    all_chord_names = CHORD_NAMES_INTERVALS.copy()
+    for item in all_chord_names:
+        if chord_name == item.split()[0]:
+            index = all_chord_names.index(item)
+            note_str = CHORD_NOTES[index]
+    note_list = note_str.split()
+    chord_notes = [notes.Note(i) for i in note_list]
+    return ChordNotes(chord_notes)
 
-    def test_is_tetrad(self):
-        assert not self.inst_chord_list[0].is_tetrad()
-        assert self.inst_chord_list[4].is_tetrad()
+
+def get_chord_intervals(chord_name=""):
+    interval_str = ""
+    all_chord_names = CHORD_NAMES_INTERVALS.copy()
+    for item in all_chord_names:
+        if chord_name == item.split()[0]:
+            interval_str = item.split("(")[-1]
+            interval_str = interval_str[:-1]
+    interval_list = interval_str.split()
+    chord_intervals = [intervals.Interval(i) for i in interval_list]
+    return ChordIntervals(chord_intervals)
+
+
+def chord_input(mode="") -> Chord:
+    if mode == "O":
+        note_input = input(
+            "Enter the notes of the chord separated by spaces: "
+        )
+        chord_name = get_chord_names(note_input)[0]
+        chord_intervals = get_chord_intervals(chord_name.item)
+        chord_notes = get_chord_notes(chord_name.item)
+        chord = Chord(chord_name, chord_intervals, chord_notes)
+        return chord
+
+    if mode == "A":
+        name_input = input("Enter the name of the chord: ")
+        chord_name = ChordName(name_input)
+        chord_intervals = get_chord_intervals(name_input)
+        chord_notes = get_chord_notes(name_input)
+        chord = Chord(chord_name, chord_intervals, chord_notes)
+        return chord
+
+
+def display_chord_information(chord: Chord):
+    chord.display_sumary()
+
+
+if __name__ == "__main__":
+    print("You're now in the chords module!")
+    while True:
+        decision1 = input(
+            "\nInput 'S' if you'd like a summary of a chord, "
+            "that we'll find it based on given notes or name. "
+            "\nYou may also enter 'E' to exit the module. "
+        )
+        if decision1 == "S":
+            mode = input(
+                "Ok, now just tell us what are we going to use to "
+                "define the chord: 'O' for notes or 'A' for name. "
+            )
+            chord = chord_input(mode)
+            display_chord_information(chord)
+        if decision1 == "E":
+            break
+    exit()
+
+
+class TestIntervalsClass:
+    minor_intervals = get_chord_intervals("Cm7(b5)")
+    major_intervals = get_chord_intervals("Caug7M(b9)")
 
     def test_is_minor(self):
-        assert not self.inst_chord_list[1].is_minor()
-        assert self.inst_chord_list[0].is_minor()
+        assert self.minor_intervals.is_minor() is True
 
     def test_is_major(self):
-        assert not self.inst_chord_list[0].is_major()
-        assert self.inst_chord_list[1].is_major()
-
-    def test_is_sus(self):
-        assert not self.inst_chord_list[0].is_sus()
-        assert self.inst_chord_list[3].is_sus()
+        assert self.major_intervals.is_major() is True
 
     def test_is_diminished(self):
-        assert not self.inst_chord_list[1].is_diminished()
-        assert self.inst_chord_list[0].is_diminished()
+        assert self.minor_intervals.is_diminished() is True
 
     def test_is_augmented(self):
-        assert not self.inst_chord_list[0].is_augmented()
-        assert self.inst_chord_list[1].is_augmented()
+        assert self.major_intervals.is_augmented() is True
 
-    def test_is_seventh_chord(self):
-        assert not self.inst_chord_list[0].is_seventh_chord()
-        assert self.inst_chord_list[2].is_seventh_chord()
+    def test_has_minor_seventh(self):
+        assert self.minor_intervals.has_minor_seventh() is True
 
-    def test_is_extended_chord(self):
-        assert not self.inst_chord_list[2].is_extended_chord()
-        assert self.inst_chord_list[4].is_extended_chord()
+    def test_has_major_seventh(self):
+        assert self.major_intervals.has_major_seventh() is True
+
+
+class TestNotesClass:
+    triad_notes = get_chord_notes("Cm")
+    extended_notes = get_chord_notes("C7M(b9)")
+    power_chord_notes = get_chord_notes("C5")
+
+    def test_is_triad(self):
+        assert self.triad_notes.is_triad() is True
+
+    def test_is_extended(self):
+        assert self.extended_notes.is_extended() is True
+
+    def test_is_power_chord(self):
+        assert self.power_chord_notes.is_power_chord() is True
+
+
+class TestChordClass:
+    name = "Cm7"
+    chord_name = ChordName(name)
+    chord_notes = get_chord_notes(name)
+    chord_intervals = get_chord_intervals(name)
+    chord = Chord(chord_name, chord_intervals, chord_notes)
+
+    def test_associate_notes_to_intervals(self):
+        self.chord.associate_notes_to_intervals()
+        interval = self.chord.intervals.items[1]
+        assert interval.note2.name == "Eb"
+
+
+def test_get_names():
+    chord_names = get_chord_names("C Eb G Bb")
+    assert chord_names[1].item == "Cm7"
+
+
+def test_get_notes():
+    chord_notes = get_chord_notes("Cm7")
+    assert chord_notes.items[2].name == "G"
+
+
+def test_get_intervals():
+    chord_intervals = get_chord_intervals("Cm7(9)")
+    assert chord_intervals.items[2].name == "bIII"

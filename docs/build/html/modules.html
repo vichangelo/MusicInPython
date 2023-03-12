@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Modules &mdash; musicinpython 1.0 documentation</title>
+  <title>Scripts &mdash; musicinpython 1.0 documentation</title>
   
 
   
@@ -82,23 +82,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-notes">Notes</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-chordgenerator">ChordGenerator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#global-variables">Global variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-intervals">Intervals</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-notes">Notes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Global variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-chords">Chords</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-intervals">Intervals</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Imports</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chords">Chords</a></li>
 </ul>
 </li>
 </ul>
@@ -149,7 +154,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Modules</li>
+      <li>Scripts</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -168,13 +173,143 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="modules">
+  <div class="section" id="scripts">
+<h1>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-chordgenerator">
+<span id="chordgenerator"></span><h2>ChordGenerator<a class="headerlink" href="#module-chordgenerator" title="Permalink to this headline">¶</a></h2>
+<p>Script that generates all chords with their intervals and notes.</p>
+<div class="section" id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code>: to write data as json to disk.</p>
+<p><a class="reference internal" href="#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: import <a class="reference internal" href="#notes.note_list" title="notes.note_list"><code class="xref py py-data docutils literal notranslate"><span class="pre">notes.note_list</span></code></a> to use as chord roots.</p>
+<p><a class="reference internal" href="#module-intervals" title="intervals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">intervals</span></code></a>: import <a class="reference internal" href="#intervals.all_intervals" title="intervals.all_intervals"><code class="xref py py-data docutils literal notranslate"><span class="pre">intervals.all_intervals</span></code></a> to sort chord
+intervals.</p>
+<p><a class="reference internal" href="#module-chords" title="chords"><code class="xref py py-mod docutils literal notranslate"><span class="pre">chords</span></code></a>: import <code class="xref py py-func docutils literal notranslate"><span class="pre">chords.get_chord_notes()</span></code> to get the notes
+of chords generated.</p>
+</div>
+<div class="section" id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h3>
+<dl class="py data">
+<dt id="chordgenerator.thirds">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">thirds</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.thirds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains third intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.fifths">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">fifths</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.fifths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains fifth intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.sevenths">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">sevenths</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.sevenths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains seventh intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.ninths">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">ninths</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.ninths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains ninth intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.elevenths">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">elevenths</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.elevenths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains eleventh intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.thirteenths">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">thirteenths</code><em class="property">: dict</em><a class="headerlink" href="#chordgenerator.thirteenths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains thirteenth intervals and their chord tones.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="chordgenerator.roots">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">roots</code><em class="property">: list</em><a class="headerlink" href="#chordgenerator.roots" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of the variable <a class="reference internal" href="#notes.note_list" title="notes.note_list"><code class="xref py py-data docutils literal notranslate"><span class="pre">notes.note_list</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#chordgenerator.format_name" title="chordgenerator.format_name"><code class="xref py py-func docutils literal notranslate"><span class="pre">format_name()</span></code></a>: format chord names.</p>
+<p><a class="reference internal" href="#chordgenerator.generate_triads" title="chordgenerator.generate_triads"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_triads()</span></code></a>: generate chord triads.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_sus()</span></code>: generated suspended chords.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">add_sevenths()</span></code>: add sevenths to chords.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">add_extensions()</span></code>: add extensions to chords.</p>
+<dl class="py function">
+<dt id="chordgenerator.format_name">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">format_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em>, <em class="sig-param"><span class="n">chord_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chordgenerator.format_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format chord name to standards.</p>
+<p>First, declares a variable to store the new name, then uses
+conditionals to:</p>
+<ol class="arabic simple">
+<li><p>Eliminate separators in appropriate extended chord cases.</p></li>
+<li><p>Format diminished chords to have no separator at the end.</p></li>
+<li><p>Replace separator with parenthesis in appropriate cases.</p></li>
+<li><p>Eliminate double separators.</p></li>
+</ol>
+<p>Lastly, return the new chord name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>string</em>) – the root of the chord, used in f-strings.</p></li>
+<li><p><strong>chord_name</strong> (<em>string</em>) – old chord name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the formatted chord name.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="chordgenerator.generate_triads">
+<code class="sig-prename descclassname">chordgenerator.</code><code class="sig-name descname">generate_triads</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chordgenerator.generate_triads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate chord triads with their corresponding intervals.</p>
+<p>Defines empty variables <cite>chord_name</cite>, for each chord’s name,
+<code class="docutils literal notranslate"><span class="pre">chord_intervals</span></code> for each chord’s intervals, <code class="docutils literal notranslate"><span class="pre">name_list</span></code> for
+a list of all triad names and <code class="docutils literal notranslate"><span class="pre">interval_list</span></code> for a list of all
+triad intervals.</p>
+<p>Then, iterates through <a class="reference internal" href="#chordgenerator.thirds" title="chordgenerator.thirds"><code class="xref py py-data docutils literal notranslate"><span class="pre">thirds</span></code></a> and through <a class="reference internal" href="#chordgenerator.fifths" title="chordgenerator.fifths"><code class="xref py py-data docutils literal notranslate"><span class="pre">fifths</span></code></a>,
+assigning respective intervals to <code class="docutils literal notranslate"><span class="pre">chord_intervals</span></code>. Iterates
+through the fifth chord tones and, using conditionals, create the
+standard chord names along their interval sets. Last, returns both
+list variables as output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chord_name</strong> – name of each chord to be created.</p></li>
+<li><p><strong>chord_intervals</strong> – intervals of each chord to be created.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>root</strong> (<em>string</em>) – root of the chords to be created.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the lists of chord names and interval sets.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="modules">
 <h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-notes">
 <span id="notes"></span><h2>Notes<a class="headerlink" href="#module-notes" title="Permalink to this headline">¶</a></h2>
 <p>Module with note variables and the means to make a chromatic scale.</p>
-<div class="section" id="global-variables">
-<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Global variables<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt id="notes.naturals">
 <code class="sig-prename descclassname">notes.</code><code class="sig-name descname">naturals</code><em class="property">: list</em><a class="headerlink" href="#notes.naturals" title="Permalink to this definition">¶</a></dt>
@@ -190,7 +325,7 @@
 <dl class="py data">
 <dt id="notes.all_notes">
 <code class="sig-prename descclassname">notes.</code><code class="sig-name descname">all_notes</code><em class="property">: list</em><a class="headerlink" href="#notes.all_notes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Contains all notes of the chromatic scale.</p>
+<dd><p>Contains all notes, with enharmonics in tuples.</p>
 </dd></dl>
 
 <dl class="py data">
@@ -205,9 +340,15 @@
 <dd><p>Contains all keys which have flats in them.</p>
 </dd></dl>
 
+<dl class="py data">
+<dt id="notes.note_list">
+<code class="sig-prename descclassname">notes.</code><code class="sig-name descname">note_list</code><em class="property">: list</em><a class="headerlink" href="#notes.note_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains all note names.</p>
+</dd></dl>
+
 </div>
-<div class="section" id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="#notes.is_accidental" title="notes.is_accidental"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_accidental()</span></code></a>: check if note has an accident.</p>
 <p><a class="reference internal" href="#notes.is_sharp" title="notes.is_sharp"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_sharp()</span></code></a>: check if note is sharp.</p>
 <p><a class="reference internal" href="#notes.is_flat" title="notes.is_flat"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_flat()</span></code></a>: check if note is flat.</p>
@@ -306,21 +447,27 @@ value in one of the tuples, return True.</p>
 <div class="section" id="module-intervals">
 <span id="intervals"></span><h2>Intervals<a class="headerlink" href="#module-intervals" title="Permalink to this headline">¶</a></h2>
 <p>Module with a list of all intervals and their functions.</p>
-<div class="section" id="imports">
-<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Imports<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: import functions and globals.</p>
 </div>
-<div class="section" id="id1">
-<h3>Global variables<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Global variables<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt id="intervals.interval_list">
 <code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">interval_list</code><em class="property">: list</em><a class="headerlink" href="#intervals.interval_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>List with all intervals, including enharmonics in tuples.</p>
 </dd></dl>
 
+<dl class="py data">
+<dt id="intervals.all_intervals">
+<code class="sig-prename descclassname">intervals.</code><code class="sig-name descname">all_intervals</code><em class="property">: list</em><a class="headerlink" href="#intervals.all_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><p>List with all interval names.</p>
+</dd></dl>
+
 </div>
-<div class="section" id="id2">
-<h3>Functions<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Functions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="#intervals.is_unison" title="intervals.is_unison"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_unison()</span></code></a>: check for unison interval.</p>
 <p><a class="reference internal" href="#intervals.is_minor" title="intervals.is_minor"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_minor()</span></code></a>: check for minor intervals.</p>
 <p><a class="reference internal" href="#intervals.is_major" title="intervals.is_major"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_major()</span></code></a>: check for major intervals.</p>
@@ -410,67 +557,6 @@ retrieve the second note.</p>
 </div>
 <div class="section" id="module-chords">
 <span id="chords"></span><h2>Chords<a class="headerlink" href="#module-chords" title="Permalink to this headline">¶</a></h2>
-<p>Module containing chord classes.</p>
-<div class="section" id="id3">
-<h3>Imports<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#module-intervals" title="intervals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">intervals</span></code></a>: import interval functions and globals.</p>
-<p><a class="reference internal" href="#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: import <code class="xref py py-data docutils literal notranslate"><span class="pre">note_list</span></code>.</p>
-</div>
-<div class="section" id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#chords.Triad" title="chords.Triad"><code class="xref py py-class docutils literal notranslate"><span class="pre">Triad</span></code></a>: contains basic chord methods and attributes.</p>
-<p><a class="reference internal" href="#chords.Extended" title="chords.Extended"><code class="xref py py-class docutils literal notranslate"><span class="pre">Extended</span></code></a>: contains methods pertaining to extended chords.</p>
-<dl class="py class">
-<dt id="chords.Extended">
-<em class="property">class </em><code class="sig-prename descclassname">chords.</code><code class="sig-name descname">Extended</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Extended" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt id="chords.Extended.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Extended.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiate a chord triad object.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="chords.Triad">
-<em class="property">class </em><code class="sig-prename descclassname">chords.</code><code class="sig-name descname">Triad</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Triad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Define chord triads and basic chord attributes and methods.</p>
-<p>This class contains methods to fill information gaps on a class
-object and methods to define and describe it. It also has sets of
-intervals to compare and determine chord qualities.</p>
-<dl class="py attribute">
-<dt id="chords.Triad.cls.major_intervals">
-<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">major_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.major_intervals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set containing the intervals of a major chord.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chords.Triad.cls.minor_intervals">
-<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">minor_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.minor_intervals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set containing the intervals of a minor chord.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="chords.Triad.cls.diminished_intervals">
-<code class="sig-prename descclassname">cls.</code><code class="sig-name descname">diminished_intervals</code><em class="property">: set</em><a class="headerlink" href="#chords.Triad.cls.diminished_intervals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set containing the intervals of a diminished chord.</p>
-</dd></dl>
-
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code>: get root of the chord.</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_minor()</span></code>: determine if chord is minor or not.</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_diminished()</span></code>: determine if chord is diminished or not.</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_intervals()</span></code>: get chord’s intervals.</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_notes()</span></code>: get chord’s notes based on its intervals.</p>
-<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_name()</span></code>: get chord’s name based on its intervals.</p>
-<dl class="py method">
-<dt id="chords.Triad.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">notes</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#chords.Triad.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Instantiate a chord triad object.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 </div>
 </div>
 
