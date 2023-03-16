@@ -1,6 +1,6 @@
 import json
-from . import intervals_test as intervals
-from . import notes_test as notes
+import tests.intervals_test as intervals
+import tests.notes_test as notes
 
 with open("extendedchords.json", "r") as chords_file:
     all_chords = json.load(chords_file)
@@ -75,6 +75,13 @@ class ChordNotes:
             return True
         return False
 
+    def get_notes_str(self):
+        notes_str = ""
+        for note in self.items:
+            notes_str += note.name + " "
+        notes_str = notes_str[:-1]
+        return notes_str
+
 
 class Chord:
     def __init__(
@@ -86,6 +93,7 @@ class Chord:
         self.name = chord_name
         self.intervals = chord_intervals
         self.notes = chord_notes
+        self.associate_notes_to_intervals()
 
     def associate_notes_to_intervals(self):
         for interv in self.intervals.items:
@@ -93,42 +101,63 @@ class Chord:
             interv.note1 = self.notes.items[0]
             interv.note2 = self.notes.items[index]
 
-    def get_notes_str(self):
-        notes_str = ""
-        for note in self.notes.items:
-            notes_str += note.name + " "
-        notes_str = notes_str[:-1]
-        return notes_str
 
-    def get_equivalent_names(self):
-        notes_str = self.get_notes_str()
+class ChordDisplayer:
+    def __init__(self, chord: Chord):
+        self.chord = chord
+
+    def generate_alternative_names(self) -> list[ChordName]:
+        notes_str = self.chord.notes.get_notes_str()
         alternative_names = get_chord_names(notes_str)
-        return alternative_names
-
-    def display_alternative_names(self):
-        notes_str = self.get_notes_str()
         notes_list = notes_str.split()
 
-        alternative_names = self.get_equivalent_names()
         for note in notes_list:
             index = notes_list.index(note)
             notes_list = notes_list[index:] + notes_list[:index]
             notes_str = " ".join(notes_list)
             alternative_names += get_chord_names(notes_str)
+        return alternative_names
 
-        alternative_names_str = ""
+    def remove_duplicate_alternative_names(self, alternative_names) -> set:
+        alternative_names_list = []
         for chord_name in alternative_names:
-            alternative_names_str += f"{chord_name.item}, "
+            alternative_names_list.append(chord_name.item)
+        chord_name = self.chord.name.item
+        alternative_names_set = set(alternative_names_list) - {chord_name}
+        return alternative_names_set
 
-    def display_sumary(self):
-        self.associate_notes_to_intervals()
+    @staticmethod
+    def format_alternative_names(alternative_names_set):
+        alternative_names_list = list(alternative_names_set)
+        alternative_names_str = ", ".join(alternative_names_list)
+        alternative_names_str = alternative_names_str + "."
+        return alternative_names_str
+
+    def inform_chord_name_interval_notes(self):
+        information = "This chord's name, intervals and notes are:\n"
+        information += self.chord.name.item + "\n"
+
         intervals_notes = ""
-        print("This chord's name, intervals and notes are:")
-        print(self.name.item)
-        for interv in self.intervals.items:
+        for interv in self.chord.intervals.items:
             intervals_notes += f"{interv.name}({interv.note2.name}) "
-        print(intervals_notes)
-        self.display_alternative_names()
+        information += intervals_notes + "\n"
+        return information
+
+    def inform_chord_alternative_names(self):
+        alternative_names = self.generate_alternative_names()
+        alternative_names_set = self.remove_duplicate_alternative_names(
+            alternative_names
+        )
+        alternative_names = self.format_alternative_names(
+            alternative_names_set
+        )
+        information = f"This chord's alternate names are: {alternative_names}"
+        return information
+
+    def display_summary(self):
+        information = self.inform_chord_name_interval_notes()
+        information += self.inform_chord_alternative_names()
+        print(information)
 
 
 def get_chord_names(chord_notes: str):
@@ -156,7 +185,7 @@ def get_chord_notes(chord_name: str):
     return ChordNotes(chord_notes)
 
 
-def get_chord_intervals(chord_name=""):
+def get_chord_intervals(chord_name: str):
     interval_str = ""
     all_chord_names = CHORD_NAMES_INTERVALS.copy()
     for item in all_chord_names:
@@ -168,28 +197,39 @@ def get_chord_intervals(chord_name=""):
     return ChordIntervals(chord_intervals)
 
 
-def chord_input(mode="") -> Chord:
-    if mode == "O":
-        note_input = input(
-            "Enter the notes of the chord separated by spaces: "
-        )
-        chord_name = get_chord_names(note_input)[0]
+def get_chord(name_param="", notes_param=""):
+    if name_param:
+        chord_name = ChordName(name_param)
+        chord_intervals = get_chord_intervals(name_param)
+        chord_notes = get_chord_notes(name_param)
+        chord = Chord(chord_name, chord_intervals, chord_notes)
+        return chord
+
+    elif notes_param:
+        chord_name = get_chord_names(notes_param)[0]
         chord_intervals = get_chord_intervals(chord_name.item)
         chord_notes = get_chord_notes(chord_name.item)
         chord = Chord(chord_name, chord_intervals, chord_notes)
         return chord
 
+
+def chord_input(mode="") -> Chord:
+    if mode == "O":
+        note_input = input(
+            "Enter the notes of the chord separated by spaces: "
+        )
+        chord = get_chord(notes_param=note_input)
+        return chord
+
     if mode == "A":
         name_input = input("Enter the name of the chord: ")
-        chord_name = ChordName(name_input)
-        chord_intervals = get_chord_intervals(name_input)
-        chord_notes = get_chord_notes(name_input)
-        chord = Chord(chord_name, chord_intervals, chord_notes)
+        chord = get_chord(name_input)
         return chord
 
 
 def display_chord_information(chord: Chord):
-    chord.display_sumary()
+    displayer = ChordDisplayer(chord)
+    displayer.display_summary()
 
 
 if __name__ == "__main__":
@@ -249,18 +289,48 @@ class TestNotesClass:
     def test_is_power_chord(self):
         assert self.power_chord_notes.is_power_chord() is True
 
+    def test_get_notes_str(self):
+        notes_str = self.triad_notes.get_notes_str()
+        assert notes_str == "C Eb G"
+
 
 class TestChordClass:
-    name = "Cm7"
-    chord_name = ChordName(name)
-    chord_notes = get_chord_notes(name)
-    chord_intervals = get_chord_intervals(name)
-    chord = Chord(chord_name, chord_intervals, chord_notes)
+    chord = get_chord("Cm7")
 
     def test_associate_notes_to_intervals(self):
         self.chord.associate_notes_to_intervals()
         interval = self.chord.intervals.items[1]
         assert interval.note2.name == "Eb"
+
+
+class TestChordDisplayerClass:
+    displayer = ChordDisplayer(get_chord("Cm7"))
+
+    def test_generate_alternative_names(self):
+        alt_names = self.displayer.generate_alternative_names()
+        assert alt_names[0].item == "Cm(#13)"
+
+    def test_remove_duplicate_alternative_names(self):
+        alt_names = self.displayer.generate_alternative_names()
+        alt_names_set = self.displayer.remove_duplicate_alternative_names(
+            alt_names
+        )
+        assert "Cm7" not in alt_names_set
+
+    def test_format_alternative_names(self):
+        names_set = {"Cm7", "Cm(#13)"}
+        assert (
+            self.displayer.format_alternative_names(names_set)
+            == "Cm(#13), Cm7."
+        )
+
+    def test_inform_chord_name_interval_notes(self):
+        information = self.displayer.inform_chord_name_interval_notes()
+        assert "Cm7" in information and "I(C)" in information
+
+    def test_inform_chord_alternative_names(self):
+        information = self.displayer.inform_chord_alternative_names()
+        assert "Cm(#13)" in information
 
 
 def test_get_names():
@@ -276,3 +346,11 @@ def test_get_notes():
 def test_get_intervals():
     chord_intervals = get_chord_intervals("Cm7(9)")
     assert chord_intervals.items[2].name == "bIII"
+
+
+def test_get_chord():
+    chord1 = get_chord("C7M")
+    chord2 = get_chord(notes_param="C E G B")
+    assert chord1.name.item == chord2.name.item
+    assert chord1.intervals.items[3].name == chord2.intervals.items[3].name
+    assert chord1.notes.items[3].name == chord2.notes.items[3].name
