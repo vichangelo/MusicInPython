@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scripts &mdash; musicinpython 0.5.0.dev2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modules" href="modules.html" />
+    <link rel="prev" title="Welcome to musicinpython’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            musicinpython
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-generators.chordgenerator">ChordGenerator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ROOTS"><code class="docutils literal notranslate"><span class="pre">ROOTS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.Chord"><code class="docutils literal notranslate"><span class="pre">Chord</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.name"><code class="docutils literal notranslate"><span class="pre">Chord.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.intervals"><code class="docutils literal notranslate"><span class="pre">Chord.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.notes"><code class="docutils literal notranslate"><span class="pre">Chord.notes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.__init__"><code class="docutils literal notranslate"><span class="pre">Chord.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.add_interval_and_tone"><code class="docutils literal notranslate"><span class="pre">Chord.add_interval_and_tone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.get_chord_notes"><code class="docutils literal notranslate"><span class="pre">Chord.get_chord_notes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.get_root"><code class="docutils literal notranslate"><span class="pre">Chord.get_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.Chord.order_intervals"><code class="docutils literal notranslate"><span class="pre">Chord.order_intervals()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter"><code class="docutils literal notranslate"><span class="pre">ChordNameFormatter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.__init__"><code class="docutils literal notranslate"><span class="pre">ChordNameFormatter.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_extended_chord_name"><code class="docutils literal notranslate"><span class="pre">ChordNameFormatter.format_extended_chord_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_seventh_chord_name"><code class="docutils literal notranslate"><span class="pre">ChordNameFormatter.format_seventh_chord_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_triad_name"><code class="docutils literal notranslate"><span class="pre">ChordNameFormatter.format_triad_name()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.ExtendedChordGenerator"><code class="docutils literal notranslate"><span class="pre">ExtendedChordGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ExtendedChordGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">ExtendedChordGenerator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.ExtendedChordGenerator.generate"><code class="docutils literal notranslate"><span class="pre">ExtendedChordGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.SeventhChordGenerator"><code class="docutils literal notranslate"><span class="pre">SeventhChordGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.SeventhChordGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">SeventhChordGenerator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.SeventhChordGenerator.generate"><code class="docutils literal notranslate"><span class="pre">SeventhChordGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.chords_generated"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.chords_generated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.root"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.generate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_power_chord"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.generate_power_chord()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_sus_chords"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.generate_sus_chords()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_triads"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.generate_triads()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.remove_unstandard_triad_chords"><code class="docutils literal notranslate"><span class="pre">TriadChordGenerator.remove_unstandard_triad_chords()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.get_all_intervals_index"><code class="docutils literal notranslate"><span class="pre">get_all_intervals_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.chordgenerator.make_chromatic_scale"><code class="docutils literal notranslate"><span class="pre">make_chromatic_scale()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-generators.scalegenerator">ScaleGenerator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Global variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.BASE_SCALES"><code class="docutils literal notranslate"><span class="pre">BASE_SCALES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.GREEK_MODES"><code class="docutils literal notranslate"><span class="pre">GREEK_MODES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.DIATONIC_SCALES"><code class="docutils literal notranslate"><span class="pre">DIATONIC_SCALES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.PENTATONICS"><code class="docutils literal notranslate"><span class="pre">PENTATONICS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ROOTS"><code class="docutils literal notranslate"><span class="pre">ROOTS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.Scale"><code class="docutils literal notranslate"><span class="pre">Scale</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.intervals"><code class="docutils literal notranslate"><span class="pre">Scale.intervals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.name"><code class="docutils literal notranslate"><span class="pre">Scale.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.notes"><code class="docutils literal notranslate"><span class="pre">Scale.notes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.__init__"><code class="docutils literal notranslate"><span class="pre">Scale.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.get_root"><code class="docutils literal notranslate"><span class="pre">Scale.get_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.Scale.get_scale_notes"><code class="docutils literal notranslate"><span class="pre">Scale.get_scale_notes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.second_variations"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.second_variations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.fourth_variations"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.fourth_variations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.sixth_variations"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.sixth_variations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.seventh_variations"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.seventh_variations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.root"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.scales_generated"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.scales_generated</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.add_variation"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.add_variation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.generate"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.generate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.generate_variations"><code class="docutils literal notranslate"><span class="pre">ScaleGenerator.generate_variations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.dump_scales"><code class="docutils literal notranslate"><span class="pre">dump_scales()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.generate_all_scales"><code class="docutils literal notranslate"><span class="pre">generate_all_scales()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.get_interval_index"><code class="docutils literal notranslate"><span class="pre">get_interval_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generators.scalegenerator.make_chromatic_scale"><code class="docutils literal notranslate"><span class="pre">make_chromatic_scale()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">musicinpython</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Scripts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scripts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scripts">
+<h1>Scripts<a class="headerlink" href="#scripts" title="Permalink to this heading"></a></h1>
+<section id="module-generators.chordgenerator">
+<span id="chordgenerator"></span><h2>ChordGenerator<a class="headerlink" href="#module-generators.chordgenerator" title="Permalink to this heading"></a></h2>
+<p>Script that generates all chords and their notes.</p>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading"></a></h3>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code>: Import the path functions.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code>: Import the arguments from the command-line.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">copy</span></code>: Import function to deepcopy objects.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code>: Import json dumping.</p>
+</section>
+<section id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.chordgenerator.ROOTS">
+<span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">ROOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#generators.chordgenerator.ROOTS" title="Permalink to this definition"></a></dt>
+<dd><p>List containing all chord roots/tonics.</p>
+</dd></dl>
+
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.chordgenerator.make_chromatic_scale" title="generators.chordgenerator.make_chromatic_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_chromatic_scale()</span></code></a>: Makes a chromatic scale.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.get_all_intervals_index" title="generators.chordgenerator.get_all_intervals_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_intervals_index()</span></code></a>: Gets an interval index from a list.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_chords()</span></code>: Generates all chords.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">dump_chords_to_json()</span></code>: Dump chords to disk in .json format.</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">run()</span></code>: Runs script.</p>
+</section>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Chord</span></code></a>: Defines chords and their methods.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter" title="generators.chordgenerator.ChordNameFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChordNameFormatter</span></code></a>: Has methods to format chord names.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator" title="generators.chordgenerator.TriadChordGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriadChordGenerator</span></code></a>: generates triads.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.SeventhChordGenerator" title="generators.chordgenerator.SeventhChordGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">SeventhChordGenerator</span></code></a>: generates seventh chords.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.ExtendedChordGenerator" title="generators.chordgenerator.ExtendedChordGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedChordGenerator</span></code></a>: generates extended chords.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">Chord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.Chord" title="Permalink to this definition"></a></dt>
+<dd><p>Class defining chords and their methods.</p>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.chordgenerator.Chord.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the chord (e.g.: “Cm7”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><a class="headerlink" href="#generators.chordgenerator.Chord.intervals" title="Permalink to this definition"></a></dt>
+<dd><p>The intervals of the chord, in a set as to not have duplicates.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.notes">
+<span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.chordgenerator.Chord.notes" title="Permalink to this definition"></a></dt>
+<dd><p>The notes of the chord, separated by spaces.</p>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.chordgenerator.Chord.order_intervals" title="generators.chordgenerator.Chord.order_intervals"><code class="xref py py-meth docutils literal notranslate"><span class="pre">order_intervals()</span></code></a>: Return the chord’s intervals in order.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.Chord.get_chord_notes" title="generators.chordgenerator.Chord.get_chord_notes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_chord_notes()</span></code></a>: Get the chord’s notes.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.Chord.add_interval_and_tone" title="generators.chordgenerator.Chord.add_interval_and_tone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_interval_and_tone()</span></code></a>: Increment name and intervals.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.Chord.get_root" title="generators.chordgenerator.Chord.get_root"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code></a>: Get the chord’s root.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.Chord.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate a chord.</p>
+<p>Passes parameters to <a class="reference internal" href="#generators.chordgenerator.Chord.name" title="generators.chordgenerator.Chord.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> and <a class="reference internal" href="modules.html#module-intervals" title="intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">intervals</span></code></a>
+attributes and declares an empty <a class="reference internal" href="modules.html#module-notes" title="notes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">notes</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Passed to <a class="reference internal" href="#generators.chordgenerator.Chord.name" title="generators.chordgenerator.Chord.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Chord.name</span></code></a>.</p></li>
+<li><p><strong>intervals</strong> (<em>set</em>) – Passed to <a class="reference internal" href="#generators.chordgenerator.Chord.intervals" title="generators.chordgenerator.Chord.intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Chord.intervals</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.add_interval_and_tone">
+<span class="sig-name descname"><span class="pre">add_interval_and_tone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.Chord.add_interval_and_tone" title="Permalink to this definition"></a></dt>
+<dd><p>Increment the chord’s interval set and name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.get_chord_notes">
+<span class="sig-name descname"><span class="pre">get_chord_notes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.Chord.get_chord_notes" title="Permalink to this definition"></a></dt>
+<dd><p>Get the notes of the chord, ordered by intervals.</p>
+<p>First orders the chord’s intervals with <a class="reference internal" href="#generators.chordgenerator.Chord.order_intervals" title="generators.chordgenerator.Chord.order_intervals"><code class="xref py py-meth docutils literal notranslate"><span class="pre">order_intervals()</span></code></a>,
+gets the root with <a class="reference internal" href="#generators.chordgenerator.Chord.get_root" title="generators.chordgenerator.Chord.get_root"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code></a> and then makes a chromatic
+scale with <a class="reference internal" href="#generators.chordgenerator.make_chromatic_scale" title="generators.chordgenerator.make_chromatic_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_chromatic_scale()</span></code></a>. Next, iterates through
+the ordered intervals, getting the index of each one using
+<a class="reference internal" href="#generators.chordgenerator.get_all_intervals_index" title="generators.chordgenerator.get_all_intervals_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_all_intervals_index()</span></code></a> and using said index on the
+chromatic scale to get the corresponding note.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.get_root">
+<span class="sig-name descname"><span class="pre">get_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#generators.chordgenerator.Chord.get_root" title="Permalink to this definition"></a></dt>
+<dd><p>Get the chord’s root.</p>
+<p>Check for an accident in the chord’s name and returns
+the portion corresponding to a root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The root (first note) of the chord.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.Chord.order_intervals">
+<span class="sig-name descname"><span class="pre">order_intervals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#generators.chordgenerator.Chord.order_intervals" title="Permalink to this definition"></a></dt>
+<dd><p>Sort and return sorted chord intervals.</p>
+<p>Declares a list with all intervals in order, then turns
+the <a class="reference internal" href="modules.html#module-intervals" title="intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">intervals</span></code></a> attribute into a list and sort it using
+the index of the previous list, finally returning it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>all_intervals</strong> (<em>list</em>) – All intervals in order.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The chord’s intervals in order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.chordgenerator.ChordNameFormatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">ChordNameFormatter</span></span><a class="headerlink" href="#generators.chordgenerator.ChordNameFormatter" title="Permalink to this definition"></a></dt>
+<dd><p>Class that groups methods to format chord names.</p>
+<section id="id1">
+<h3>Methods<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_triad_name" title="generators.chordgenerator.ChordNameFormatter.format_triad_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">format_triad_name()</span></code></a>: Formats triad chord names.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_seventh_chord_name" title="generators.chordgenerator.ChordNameFormatter.format_seventh_chord_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">format_seventh_chord_name()</span></code></a>: Formats seventh chord names.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.ChordNameFormatter.format_extended_chord_name" title="generators.chordgenerator.ChordNameFormatter.format_extended_chord_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">format_extended_chord_name()</span></code></a>: Formats extended chord names.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ChordNameFormatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ChordNameFormatter.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ChordNameFormatter.format_extended_chord_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_extended_chord_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><span class="pre">Chord</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ChordNameFormatter.format_extended_chord_name" title="Permalink to this definition"></a></dt>
+<dd><p>Format extended chord names using replace().</p>
+<p>Format the chords to either not have a slash or have
+parenthesis in its place, where applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chord</strong> (<a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><em>Chord</em></a>) – Chord to be formatted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ChordNameFormatter.format_seventh_chord_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_seventh_chord_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><span class="pre">Chord</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ChordNameFormatter.format_seventh_chord_name" title="Permalink to this definition"></a></dt>
+<dd><p>Format seventh chord names using replace().</p>
+<p>Formats “(b5)” chords to have the suffix at the end of the name.
+Formats “sus” chords to have a slash between their suffix and a
+“7”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chord</strong> (<a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><em>Chord</em></a>) – Chord to be formatted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ChordNameFormatter.format_triad_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">format_triad_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><span class="pre">Chord</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ChordNameFormatter.format_triad_name" title="Permalink to this definition"></a></dt>
+<dd><p>Format triad names using replace().</p>
+<p>Formats diminished chords to not have “mdim” suffix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chord</strong> (<a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><em>Chord</em></a>) – Chord to be formatted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.chordgenerator.ExtendedChordGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">ExtendedChordGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ExtendedChordGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ExtendedChordGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ExtendedChordGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiates a generator.</p>
+<p>Passes a parameter to the <code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code> to be used as base to
+the <code class="xref py py-attr docutils literal notranslate"><span class="pre">chords_generated</span></code>, which is initialized as an empty
+list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – Root of the chords to be generated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.ExtendedChordGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.ExtendedChordGenerator.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Combine all previous methods and formats the chords.</p>
+<p>Generates triad chords, “sus” chords, removes the unstandard
+ones, format them and get their notes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.chordgenerator.SeventhChordGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">SeventhChordGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.SeventhChordGenerator" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.SeventhChordGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.SeventhChordGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiates a generator.</p>
+<p>Passes a parameter to the <code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code> to be used as base to
+the <code class="xref py py-attr docutils literal notranslate"><span class="pre">chords_generated</span></code>, which is initialized as an empty
+list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – Root of the chords to be generated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.SeventhChordGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.SeventhChordGenerator.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Combine all previous methods and formats the chords.</p>
+<p>Generates triad chords, “sus” chords, removes the unstandard
+ones, format them and get their notes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">TriadChordGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Class that defines a triad generator and its methods.</p>
+<section id="id2">
+<h3>Attributes<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.chords_generated">
+<span class="sig-name descname"><span class="pre">chords_generated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#generators.chordgenerator.Chord" title="generators.chordgenerator.Chord"><span class="pre">Chord</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.chords_generated" title="Permalink to this definition"></a></dt>
+<dd><p>List of chords generated.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.root">
+<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.root" title="Permalink to this definition"></a></dt>
+<dd><p>Note used as root of the chords generated.</p>
+</dd></dl>
+
+</section>
+<section id="id3">
+<h3>Methods<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_triads" title="generators.chordgenerator.TriadChordGenerator.generate_triads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_triads()</span></code></a>: Generate all triads.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_sus_chords" title="generators.chordgenerator.TriadChordGenerator.generate_sus_chords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_sus_chords()</span></code></a>: Generate all “sus” chords.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_power_chord" title="generators.chordgenerator.TriadChordGenerator.generate_power_chord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_power_chord()</span></code></a>: Generate the power chord of the root.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.remove_unstandard_triad_chords" title="generators.chordgenerator.TriadChordGenerator.remove_unstandard_triad_chords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_unstandard_triad_chords()</span></code></a>: Remove selected triads.</p>
+<p><a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate" title="generators.chordgenerator.TriadChordGenerator.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code></a>: Combines all methods and formats the chords.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiates a generator.</p>
+<p>Passes a parameter to the <a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.root" title="generators.chordgenerator.TriadChordGenerator.root"><code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code></a> to be used as base to
+the <a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.chords_generated" title="generators.chordgenerator.TriadChordGenerator.chords_generated"><code class="xref py py-attr docutils literal notranslate"><span class="pre">chords_generated</span></code></a>, which is initialized as an empty
+list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – Root of the chords to be generated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Combine all previous methods and formats the chords.</p>
+<p>Generates triad chords, “sus” chords, removes the unstandard
+ones, format them and get their notes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.generate_power_chord">
+<span class="sig-name descname"><span class="pre">generate_power_chord</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.generate_power_chord" title="Permalink to this definition"></a></dt>
+<dd><p>Create a power (5) chord and adds it to the list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.generate_sus_chords">
+<span class="sig-name descname"><span class="pre">generate_sus_chords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.generate_sus_chords" title="Permalink to this definition"></a></dt>
+<dd><p>Generate all “sus” chords of the generator’s root.</p>
+<p>Similar to <a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.generate_triads" title="generators.chordgenerator.TriadChordGenerator.generate_triads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_triads()</span></code></a>, declares a dictionary with
+intervals and chord tones, then iterate through it, adding the
+elements to the chord in the process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sus_chords_dict</strong> (<em>dict</em>) – Contains “sus” chord information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.generate_triads">
+<span class="sig-name descname"><span class="pre">generate_triads</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.generate_triads" title="Permalink to this definition"></a></dt>
+<dd><p>Generate all triad chords with the generator’s root.</p>
+<p>Declares dictionaries containing thirds and fifths (the
+components of a triad chord), with both intervals and chord
+tones, then iterate through them. At the end, instantiate an
+empty chord and use <code class="xref py py-meth docutils literal notranslate"><span class="pre">add_interval_and_tone()</span></code> to add the
+elements to it, finally appending it to the
+<a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.chords_generated" title="generators.chordgenerator.TriadChordGenerator.chords_generated"><code class="xref py py-attr docutils literal notranslate"><span class="pre">chords_generated</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thirds</strong> (<em>dict</em>) – Dictionary containing both thirds.</p></li>
+<li><p><strong>fifths</strong> (<em>dict</em>) – Dictionary containing all fifths.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.chordgenerator.TriadChordGenerator.remove_unstandard_triad_chords">
+<span class="sig-name descname"><span class="pre">remove_unstandard_triad_chords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.chordgenerator.TriadChordGenerator.remove_unstandard_triad_chords" title="Permalink to this definition"></a></dt>
+<dd><p>Remove unstandard triads from the list of chords generated.</p>
+<p>Copies <a class="reference internal" href="#generators.chordgenerator.TriadChordGenerator.chords_generated" title="generators.chordgenerator.TriadChordGenerator.chords_generated"><code class="xref py py-attr docutils literal notranslate"><span class="pre">chords_generated</span></code></a> so the removing doesn’t mess
+up the iteration that ensues. First, remove major chords that
+have “dim” in their names, then remove minor chords that have
+augmented particles in them.</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.chordgenerator.get_all_intervals_index">
+<span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">get_all_intervals_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#generators.chordgenerator.get_all_intervals_index" title="Permalink to this definition"></a></dt>
+<dd><p>Get an interval’s index from a list with all intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.chordgenerator.make_chromatic_scale">
+<span class="sig-prename descclassname"><span class="pre">generators.chordgenerator.</span></span><span class="sig-name descname"><span class="pre">make_chromatic_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#generators.chordgenerator.make_chromatic_scale" title="Permalink to this definition"></a></dt>
+<dd><p>Make a chromatic scale based on a given root.</p>
+<p>Declares two lists containing the keys that have sharps and flats
+in their scales, then make a scale with only that type of accident.
+Last, sets the root of the scale to be the root passed as argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – Root of the scale-to-be.</p>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>sharp_keys</strong> (<em>list</em>) – Keys that have sharps in them.</p></li>
+<li><p><strong>flat_keys</strong> (<em>list</em>) – Keys that have flats in them.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The made chromatic scale.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-generators.scalegenerator">
+<span id="scalegenerator"></span><h2>ScaleGenerator<a class="headerlink" href="#module-generators.scalegenerator" title="Permalink to this heading"></a></h2>
+<p>Generates all scales and their notes with interval variations.</p>
+<section id="id4">
+<h3>Imports<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code>: Used to obtain path to .json file.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">copy</span></code>: Used to deepcopy objects.</p>
+<p><code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code>: Used to dump all the scales to .json format.</p>
+</section>
+<section id="id5">
+<h3>Global variables<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.scalegenerator.BASE_SCALES">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">BASE_SCALES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.BASE_SCALES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the natural major, minor, harmonic and melodic minor scales.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.scalegenerator.GREEK_MODES">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">GREEK_MODES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.GREEK_MODES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the greek modes and their intervals.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.scalegenerator.DIATONIC_SCALES">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">DIATONIC_SCALES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.DIATONIC_SCALES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains all diatonic (7-note) scales.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.scalegenerator.PENTATONICS">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">PENTATONICS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.PENTATONICS" title="Permalink to this definition"></a></dt>
+<dd><p>Contains both major and minor pentatonic scales.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="generators.scalegenerator.ROOTS">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">ROOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#generators.scalegenerator.ROOTS" title="Permalink to this definition"></a></dt>
+<dd><p>Contains all notes to be used as scale roots.</p>
+</dd></dl>
+
+</section>
+<section id="id6">
+<h3>Functions<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.scalegenerator.make_chromatic_scale" title="generators.scalegenerator.make_chromatic_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_chromatic_scale()</span></code></a>: Generates a chromatic scale.</p>
+<p><a class="reference internal" href="#generators.scalegenerator.get_interval_index" title="generators.scalegenerator.get_interval_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_interval_index()</span></code></a>: Gets an interval’s index from a list.</p>
+<p><a class="reference internal" href="#generators.scalegenerator.generate_all_scales" title="generators.scalegenerator.generate_all_scales"><code class="xref py py-func docutils literal notranslate"><span class="pre">generate_all_scales()</span></code></a>: Generates all scales using all roots.</p>
+<p><a class="reference internal" href="#generators.scalegenerator.dump_scales" title="generators.scalegenerator.dump_scales"><code class="xref py py-func docutils literal notranslate"><span class="pre">dump_scales()</span></code></a>: Dumps scales in .json format.</p>
+</section>
+<section id="id7">
+<h3>Classes<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.scalegenerator.Scale" title="generators.scalegenerator.Scale"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scale</span></code></a>: Defines scales.</p>
+<p><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator" title="generators.scalegenerator.ScaleGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScaleGenerator</span></code></a>: Generates scales.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">Scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.Scale" title="Permalink to this definition"></a></dt>
+<dd><p>Defines scales and their attributes and methods.</p>
+<section id="id8">
+<h3>Attributes<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.intervals">
+<span class="sig-name descname"><span class="pre">intervals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.scalegenerator.Scale.intervals" title="Permalink to this definition"></a></dt>
+<dd><p>The intervals of the scale, separated by spaces.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.scalegenerator.Scale.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the scale.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.notes">
+<span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.scalegenerator.Scale.notes" title="Permalink to this definition"></a></dt>
+<dd><p>The notes of the scale, separated by spaces.</p>
+</dd></dl>
+
+</section>
+<section id="id9">
+<h3>Methods<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.scalegenerator.Scale.get_root" title="generators.scalegenerator.Scale.get_root"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_root()</span></code></a>: Get the root of the scale.</p>
+<p><a class="reference internal" href="#generators.scalegenerator.Scale.get_scale_notes" title="generators.scalegenerator.Scale.get_scale_notes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_scale_notes()</span></code></a>: Get the notes of the scale.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.Scale.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate a scale object.</p>
+<p>Passes optional arguments for <a class="reference internal" href="modules.html#module-intervals" title="intervals"><code class="xref py py-attr docutils literal notranslate"><span class="pre">intervals</span></code></a> and <a class="reference internal" href="#generators.scalegenerator.Scale.name" title="generators.scalegenerator.Scale.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>
+and declares an empty <a class="reference internal" href="modules.html#module-notes" title="notes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">notes</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.get_root">
+<span class="sig-name descname"><span class="pre">get_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#generators.scalegenerator.Scale.get_root" title="Permalink to this definition"></a></dt>
+<dd><p>Get the root of the scale object.</p>
+<p>Checks for the presence of an accident and return the portion
+of the scale’s name corresponding to the root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The root of the scale.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.Scale.get_scale_notes">
+<span class="sig-name descname"><span class="pre">get_scale_notes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.Scale.get_scale_notes" title="Permalink to this definition"></a></dt>
+<dd><p>Get the notes of the scale object.</p>
+<p>First, gets the root of the scale and makes a chromatic scale
+based on it, then uses <a class="reference internal" href="#generators.scalegenerator.get_interval_index" title="generators.scalegenerator.get_interval_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_interval_index()</span></code></a> to get each
+interval’s index from a list of all them and uses said index
+on the chromatic scale to get the respective note.</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">ScaleGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Class that defines the scale generator.</p>
+<section id="id10">
+<h3>Attributes<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.second_variations">
+<span class="sig-name descname"><span class="pre">second_variations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.second_variations" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the second degree variations and their name suffixes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.fourth_variations">
+<span class="sig-name descname"><span class="pre">fourth_variations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.fourth_variations" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the fourth degree variations and their name suffixes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.sixth_variations">
+<span class="sig-name descname"><span class="pre">sixth_variations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.sixth_variations" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the sixth degree variations and their name suffixes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.seventh_variations">
+<span class="sig-name descname"><span class="pre">seventh_variations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.seventh_variations" title="Permalink to this definition"></a></dt>
+<dd><p>Contains the seventh degree variations and their name suffixes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.root">
+<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.root" title="Permalink to this definition"></a></dt>
+<dd><p>Root note used by the generator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.scales_generated">
+<span class="sig-name descname"><span class="pre">scales_generated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.scales_generated" title="Permalink to this definition"></a></dt>
+<dd><p>List of scales generated by the generator methods.</p>
+</dd></dl>
+
+</section>
+<section id="id11">
+<h3>Methods<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.generate" title="generators.scalegenerator.ScaleGenerator.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code></a>: Generates scales based on a dictionary</p>
+<p><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.add_variation" title="generators.scalegenerator.ScaleGenerator.add_variation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_variation()</span></code></a>: Adds to scales variations from a dictionary</p>
+<p><a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.generate_variations" title="generators.scalegenerator.ScaleGenerator.generate_variations"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_variations()</span></code></a>: Generates all possible scale variations</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the scale generator with an empty scale list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.add_variation">
+<span class="sig-name descname"><span class="pre">add_variation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variation_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.add_variation" title="Permalink to this definition"></a></dt>
+<dd><p>Add variations to existing scales.</p>
+<p>Iterates through a copy of the existing scales, then through
+the dictionary of variations, checking if each variation in its
+natural form is in the scale’s intervals. If true, makes a
+deepcopy of the scale object, substitutes the old interval by
+the variation and add the variation’s name to the scale’s name.
+Finally, appends the new scale to <a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.scales_generated" title="generators.scalegenerator.ScaleGenerator.scales_generated"><code class="xref py py-attr docutils literal notranslate"><span class="pre">scales_generated</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>variation_dict</strong> (<em>dict</em>) – Dictionary containing variations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Make scales based on a dictionary with names and intervals.</p>
+<p>Iterates through the dictionary, grabbing the keys to compose
+the name of the scale and the values to compose the intervals.
+Finally, append to <a class="reference internal" href="#generators.scalegenerator.ScaleGenerator.scales_generated" title="generators.scalegenerator.ScaleGenerator.scales_generated"><code class="xref py py-attr docutils literal notranslate"><span class="pre">scales_generated</span></code></a> the composed scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_intervals</strong> (<em>dict</em>) – The dictionary containing scale data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generators.scalegenerator.ScaleGenerator.generate_variations">
+<span class="sig-name descname"><span class="pre">generate_variations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.ScaleGenerator.generate_variations" title="Permalink to this definition"></a></dt>
+<dd><p>Use class dictionaries to generate all scale variations.</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.scalegenerator.dump_scales">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">dump_scales</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_scales</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#generators.scalegenerator.Scale" title="generators.scalegenerator.Scale"><span class="pre">generators.scalegenerator.Scale</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'../data'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generators.scalegenerator.dump_scales" title="Permalink to this definition"></a></dt>
+<dd><p>Dump scales generated to a .json file.</p>
+<p>Declares a variable to put all scales in, then gets the notes
+of all scales and format said scales for putting in the variable.
+Afterwards, get the path of the dump using the <code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code> module and
+finally dumps the variable to a .json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_scales</strong> (<em>list</em><em>[</em><a class="reference internal" href="#generators.scalegenerator.Scale" title="generators.scalegenerator.Scale"><em>Scale</em></a><em>]</em>) – List containing all scales generated.</p></li>
+<li><p><strong>dump_path</strong> (<em>str</em>) – Directory to dump scales in.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scale_dump</strong> – Variable to contain all formatted scales.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.scalegenerator.generate_all_scales">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">generate_all_scales</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#generators.scalegenerator.Scale" title="generators.scalegenerator.Scale"><span class="pre">generators.scalegenerator.Scale</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#generators.scalegenerator.generate_all_scales" title="Permalink to this definition"></a></dt>
+<dd><p>Generate all possible scales using constants and classes.</p>
+<p>Instantiates a generic scale generator and an empty scale list,
+then iterates through <a class="reference internal" href="#generators.scalegenerator.ROOTS" title="generators.scalegenerator.ROOTS"><code class="xref py py-data docutils literal notranslate"><span class="pre">ROOTS</span></code></a>, setting the generator’s root
+to be the current iteration value. Then, uses <code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code> on
+module scale constants <a class="reference internal" href="#generators.scalegenerator.DIATONIC_SCALES" title="generators.scalegenerator.DIATONIC_SCALES"><code class="xref py py-data docutils literal notranslate"><span class="pre">DIATONIC_SCALES</span></code></a> and
+<a class="reference internal" href="#generators.scalegenerator.PENTATONICS" title="generators.scalegenerator.PENTATONICS"><code class="xref py py-data docutils literal notranslate"><span class="pre">PENTATONICS</span></code></a>, then <code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_variations()</span></code> to add all
+variations. After, extends the scale list with the scales generated
+so far and returns it at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All scales with variations included.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="#generators.scalegenerator.Scale" title="generators.scalegenerator.Scale">Scale</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.scalegenerator.get_interval_index">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">get_interval_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#generators.scalegenerator.get_interval_index" title="Permalink to this definition"></a></dt>
+<dd><p>Get the index of an interval from a list with all intervals.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generators.scalegenerator.make_chromatic_scale">
+<span class="sig-prename descclassname"><span class="pre">generators.scalegenerator.</span></span><span class="sig-name descname"><span class="pre">make_chromatic_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#generators.scalegenerator.make_chromatic_scale" title="Permalink to this definition"></a></dt>
+<dd><p>Make a chromatic scale with a given root.</p>
+<p>Uses two variables containing possible keys and makes a new list of
+notes using naturals and only flats or sharps present in
+<a class="reference internal" href="#generators.scalegenerator.ROOTS" title="generators.scalegenerator.ROOTS"><code class="xref py py-data docutils literal notranslate"><span class="pre">ROOTS</span></code></a>, then sets the root of the scale as the one given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>str</em>) – Root of the scale to be made.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The generated chromatic scale.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to musicinpython’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Victor Angelo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,29 +1,83 @@
+[build-system]
+requires = ["setuptools>=67.6.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "musicinpython"
+version = "0.5.0.dev2"
+description = "Music utilities script"
+readme = "README.rst"
+requires-python = ">=3.9.2"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Victor Angelo", email = "vic.angelo19@gmail.com"}
+]
+keywords = ["music", "script", "utilities"]
+classifiers = [
+    "Development status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Other Audience",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Topic :: Artistic Software",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Utilities"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/vichangelo/musicinpython/"
+"Bug Reports" = "https://github.com/vichangelo/musicinpython/issues/"
+"Source" = "https://github.com/vichangelo/musicinpython/"
+
+[project.optional-dependencies]
+test = ["coverage", "pytest", "pytest-cov"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.flake8]
 max-doc-length = 72
 statistics = true
 max-complexity = 10
 max-expression-complexity = 5
-cohesion-below = 66
+cohesion-below = 50
 max-function-length = 50
 max-parameters-amount = 3
+rst-roles = ["mod", "class", "func", "data", "attr", "meth", "exc"]
+rst-directives = ["module", "function", "data", "exception", "class", "attribute", "method"]
 
 [tool.pytest.ini_options]
 addopts = """
---cov=tests 
+--cov=musicinpython 
 --cov-config=/home/victor-files/projects/musicinpython/pyproject.toml 
 --cov-branch 
 --cov-report=term 
---cov-report=lcov:./coverage.lcov
+--cov-report=lcov:./coverage.lcov 
 """
+norecursedirs = "generators"
+testpaths = "tests"
 
 [tool.coverage]
+[tool.coverage.run]
+source = ["musicinpython", "tests"]
+
 [tool.coverage.report]
 exclude_lines = [
               "pragma: no cover",
               "if __name__ == .__main__.:",
               "def ([a-z_])+input",
               "def ([a-z_])+interface",
-              "def display"]
+              "def display",
+              "def run"]
 ignore_errors = true
 skip_empty = true
 sort = "-cover"

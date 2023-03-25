@@ -1,0 +1,17 @@
+#######
+Scripts
+#######
+
+**************
+ChordGenerator
+**************
+.. automodule:: generators.chordgenerator
+   :members:
+   :special-members: __init__
+
+**************
+ScaleGenerator
+**************
+.. automodule:: generators.scalegenerator
+   :members:
+   :special-members: __init__

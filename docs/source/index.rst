@@ -16,6 +16,14 @@ Indices and tables
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Scripts:
 
-   modules
+   chordgenerator
+   scalegenerator
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Libraries:
+
+   notes
+   intervals

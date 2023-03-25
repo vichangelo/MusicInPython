@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes &mdash; musicinpython 0.5.0.dev2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ScaleGenerator" href="scalegenerator.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            musicinpython
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Scripts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="chordgenerator.html">ChordGenerator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scalegenerator.html">ScaleGenerator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-notes">Module Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes.NATURAL_NOTES"><code class="docutils literal notranslate"><span class="pre">NATURAL_NOTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.ACCIDENTAL_NOTES"><code class="docutils literal notranslate"><span class="pre">ACCIDENTAL_NOTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.ALL_NOTE_NAMES"><code class="docutils literal notranslate"><span class="pre">ALL_NOTE_NAMES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.FLAT_KEYS"><code class="docutils literal notranslate"><span class="pre">FLAT_KEYS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.SHARP_KEYS"><code class="docutils literal notranslate"><span class="pre">SHARP_KEYS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notes.InvalidNoteNameError"><code class="docutils literal notranslate"><span class="pre">InvalidNoteNameError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notes.enharmonize_note"><code class="docutils literal notranslate"><span class="pre">enharmonize_note()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes.note_input"><code class="docutils literal notranslate"><span class="pre">note_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes.display_chromatic_scale"><code class="docutils literal notranslate"><span class="pre">display_chromatic_scale()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes.all_about_note"><code class="docutils literal notranslate"><span class="pre">all_about_note()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#note-summary">Note Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes.Note"><code class="docutils literal notranslate"><span class="pre">Note</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#note-methods">Note Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes.Note.is_accidental"><code class="docutils literal notranslate"><span class="pre">Note.is_accidental()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.Note.is_flat"><code class="docutils literal notranslate"><span class="pre">Note.is_flat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.Note.is_sharp"><code class="docutils literal notranslate"><span class="pre">Note.is_sharp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chromaticscalegenerator">ChromaticScaleGenerator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes.ChromaticScaleGenerator"><code class="docutils literal notranslate"><span class="pre">ChromaticScaleGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chromaticscalegenerator-methods">ChromaticScaleGenerator Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notes.ChromaticScaleGenerator.generate_base_scale"><code class="docutils literal notranslate"><span class="pre">ChromaticScaleGenerator.generate_base_scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes.ChromaticScaleGenerator.generate"><code class="docutils literal notranslate"><span class="pre">ChromaticScaleGenerator.generate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">musicinpython</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/notes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="notes">
+<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h1>
+<section id="module-notes">
+<span id="module-summary"></span><h2>Module Summary<a class="headerlink" href="#module-notes" title="Permalink to this heading"></a></h2>
+<p>Module containing the Note class and related variables and functions.</p>
+<section id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="notes.NATURAL_NOTES">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">NATURAL_NOTES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#notes.NATURAL_NOTES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains all 7 natural notes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="notes.ACCIDENTAL_NOTES">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">ACCIDENTAL_NOTES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#notes.ACCIDENTAL_NOTES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains all accidents with enharmonics in tuples.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="notes.ALL_NOTE_NAMES">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">ALL_NOTE_NAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#notes.ALL_NOTE_NAMES" title="Permalink to this definition"></a></dt>
+<dd><p>Contains all note names, including sharps and flats.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="notes.FLAT_KEYS">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">FLAT_KEYS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#notes.FLAT_KEYS" title="Permalink to this definition"></a></dt>
+<dd><p>Contains scale keys that have flats.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="notes.SHARP_KEYS">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">SHARP_KEYS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#notes.SHARP_KEYS" title="Permalink to this definition"></a></dt>
+<dd><p>Contains scale keys that have sharps.</p>
+</dd></dl>
+
+</section>
+<section id="exceptions">
+<h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#notes.InvalidNoteNameError" title="notes.InvalidNoteNameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">InvalidNoteNameError</span></code></a>: Exception raised by an invalid note name.</p>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#notes.enharmonize_note" title="notes.enharmonize_note"><code class="xref py py-func docutils literal notranslate"><span class="pre">enharmonize_note()</span></code></a>: Get a note’s enharmonic.</p>
+<p><a class="reference internal" href="#notes.note_input" title="notes.note_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">note_input()</span></code></a>: Receives input and turns into a Note object.</p>
+<p><a class="reference internal" href="#notes.display_chromatic_scale" title="notes.display_chromatic_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">display_chromatic_scale()</span></code></a>: Outputs a message with chromatic scale.</p>
+<p><a class="reference internal" href="#notes.all_about_note" title="notes.all_about_note"><code class="xref py py-func docutils literal notranslate"><span class="pre">all_about_note()</span></code></a>: Returns all information on a note.</p>
+</section>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#notes.Note" title="notes.Note"><code class="xref py py-class docutils literal notranslate"><span class="pre">Note</span></code></a>: Defines a note and its methods.</p>
+<p><a class="reference internal" href="#notes.ChromaticScaleGenerator" title="notes.ChromaticScaleGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChromaticScaleGenerator</span></code></a>: Defines a base scale generator.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Exceptions<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="notes.InvalidNoteNameError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">InvalidNoteNameError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Invalid</span> <span class="pre">note</span> <span class="pre">name:</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.InvalidNoteNameError" title="Permalink to this definition"></a></dt>
+<dd><p>Exception raised when a note is instantiated with invalid name.</p>
+<p>Supports custom message and displaying the invalid name.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>Functions<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="notes.enharmonize_note">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">enharmonize_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></span><a class="headerlink" href="#notes.enharmonize_note" title="Permalink to this definition"></a></dt>
+<dd><p>Get the enharmonic of a note.</p>
+<p>If the argument note is accidental, returns a note object
+corresponding to the note name’s pair in <a class="reference internal" href="#notes.ACCIDENTAL_NOTES" title="notes.ACCIDENTAL_NOTES"><code class="xref py py-data docutils literal notranslate"><span class="pre">ACCIDENTAL_NOTES</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The note’s enharmonic (same sound, opposite accident).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#notes.Note" title="notes.Note">Note</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notes.note_input">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">note_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Insert</span> <span class="pre">the</span> <span class="pre">note</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">know</span> <span class="pre">about:</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></span><a class="headerlink" href="#notes.note_input" title="Permalink to this definition"></a></dt>
+<dd><p>Receive input of a note name and returns a note object.</p>
+<p>Starts a loop (so eventually a right input is received), receives
+the input and does error handling for the possible
+<a class="reference internal" href="#notes.InvalidNoteNameError" title="notes.InvalidNoteNameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">InvalidNoteNameError</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> (<em>str</em>) – A custom message, for reusability in other modules.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The object corresponding to the input.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#notes.Note" title="notes.Note">Note</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notes.display_chromatic_scale">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">display_chromatic_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#notes.display_chromatic_scale" title="Permalink to this definition"></a></dt>
+<dd><p>Display a message containing the chromatic scale of a given note.</p>
+<p>First, generates a chromatic scale using <code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code>. Then
+extracts the note names using a list comprehension and join them
+to a message, returning it after.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>note_obj</strong> (<a class="reference internal" href="#notes.Note" title="notes.Note"><em>Note</em></a>) – Chosen note to make the scale upon.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A message containing the note’s scale.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="notes.all_about_note">
+<span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">all_about_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#notes.all_about_note" title="Permalink to this definition"></a></dt>
+<dd><p>Display all information on a given note object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>note_obj</strong> (<a class="reference internal" href="#notes.Note" title="notes.Note"><em>Note</em></a>) – The given note.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A message containing all the information.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>Classes<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="note-summary">
+<h3>Note Summary<a class="headerlink" href="#note-summary" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="notes.Note">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">Note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.Note" title="Permalink to this definition"></a></dt>
+<dd><p>Class that define notes and their methods.</p>
+<section id="attributes">
+<h4>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h4>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notes.Note.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#notes.Note.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the name (e.g.: “D#”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notes.Note.accident_sign">
+<span class="sig-name descname"><span class="pre">accident_sign</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#notes.Note.accident_sign" title="Permalink to this definition"></a></dt>
+<dd><p>The symbol of the accident the note has (e.g.: “#”).</p>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#notes.Note.is_accidental" title="notes.Note.is_accidental"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_accidental()</span></code></a>: Check if the note has an accident.</p>
+<p><a class="reference internal" href="#notes.Note.is_flat" title="notes.Note.is_flat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_flat()</span></code></a>: Check if the note is flat.</p>
+<p><a class="reference internal" href="#notes.Note.is_sharp" title="notes.Note.is_sharp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_sharp()</span></code></a>: Check if the note is sharp.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.Note.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.Note.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate a note.</p>
+<p>Raises an exception if the note’s name not in
+<a class="reference internal" href="#notes.ALL_NOTE_NAMES" title="notes.ALL_NOTE_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">ALL_NOTE_NAMES</span></code></a>, and initializes an empty
+<a class="reference internal" href="#notes.Note.accident_sign" title="notes.Note.accident_sign"><code class="xref py py-attr docutils literal notranslate"><span class="pre">accident_sign</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Passed to <a class="reference internal" href="#notes.Note.name" title="notes.Note.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="note-methods">
+<h3>Note Methods<a class="headerlink" href="#note-methods" title="Permalink to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.Note.is_accidental">
+<span class="sig-prename descclassname"><span class="pre">Note.</span></span><span class="sig-name descname"><span class="pre">is_accidental</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#notes.Note.is_accidental" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the note has an accident in its name.</p>
+<p>If the note has an accident, sets <a class="reference internal" href="#notes.Note.accident_sign" title="notes.Note.accident_sign"><code class="xref py py-attr docutils literal notranslate"><span class="pre">accident_sign</span></code></a> to it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.Note.is_flat">
+<span class="sig-prename descclassname"><span class="pre">Note.</span></span><span class="sig-name descname"><span class="pre">is_flat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#notes.Note.is_flat" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the note is flat using its accident sign.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.Note.is_sharp">
+<span class="sig-prename descclassname"><span class="pre">Note.</span></span><span class="sig-name descname"><span class="pre">is_sharp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#notes.Note.is_sharp" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the note is sharp using its accident sign.</p>
+</dd></dl>
+
+</section>
+<section id="chromaticscalegenerator">
+<h3>ChromaticScaleGenerator<a class="headerlink" href="#chromaticscalegenerator" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">notes.</span></span><span class="sig-name descname"><span class="pre">ChromaticScaleGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.ChromaticScaleGenerator" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a generator for chromatic scales.</p>
+<section id="id4">
+<h4>Attributes<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator.root">
+<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></em><a class="headerlink" href="#notes.ChromaticScaleGenerator.root" title="Permalink to this definition"></a></dt>
+<dd><p>Note to be used as root of the generator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator.notes">
+<span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#notes.ChromaticScaleGenerator.notes" title="Permalink to this definition"></a></dt>
+<dd><p>List of notes generated to form the scale.</p>
+</dd></dl>
+
+</section>
+<section id="id5">
+<h4>Methods<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#notes.ChromaticScaleGenerator.generate_base_scale" title="notes.ChromaticScaleGenerator.generate_base_scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_base_scale()</span></code></a>: Generate a scale with root in C.</p>
+<p><a class="reference internal" href="#notes.ChromaticScaleGenerator.generate" title="notes.ChromaticScaleGenerator.generate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate()</span></code></a>: Generate a chromatic scale based on the root.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#notes.Note" title="notes.Note"><span class="pre">Note</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#notes.ChromaticScaleGenerator.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the generator with an empty note list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root</strong> (<a class="reference internal" href="#notes.Note" title="notes.Note"><em>Note</em></a>) – Passed to <a class="reference internal" href="#notes.ChromaticScaleGenerator.root" title="notes.ChromaticScaleGenerator.root"><code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="chromaticscalegenerator-methods">
+<h3>ChromaticScaleGenerator Methods<a class="headerlink" href="#chromaticscalegenerator-methods" title="Permalink to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator.generate_base_scale">
+<span class="sig-prename descclassname"><span class="pre">ChromaticScaleGenerator.</span></span><span class="sig-name descname"><span class="pre">generate_base_scale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notes.ChromaticScaleGenerator.generate_base_scale" title="Permalink to this definition"></a></dt>
+<dd><p>Generate a scale with proper accidents and root in C.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="notes.ChromaticScaleGenerator.generate">
+<span class="sig-prename descclassname"><span class="pre">ChromaticScaleGenerator.</span></span><span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#notes.ChromaticScaleGenerator.generate" title="Permalink to this definition"></a></dt>
+<dd><p>Generate the root’s chromatic scale.</p>
+<p>Calls <a class="reference internal" href="#notes.ChromaticScaleGenerator.generate_base_scale" title="notes.ChromaticScaleGenerator.generate_base_scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_base_scale()</span></code></a> and then iterates through the
+notes to find the root’s index, manipulating the list to start
+it by the root.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scalegenerator.html" class="btn btn-neutral float-left" title="ScaleGenerator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Victor Angelo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

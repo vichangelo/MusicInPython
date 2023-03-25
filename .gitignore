@@ -1,3 +1,8 @@
 venv/
 *coverage*
 *.org
+musicinpython.egg*/
+dist/
+pip3
+.dir-locals.el
+__pycache__/
