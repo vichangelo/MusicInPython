@@ -207,17 +207,17 @@ class Interval:
 
 def all_about_interval(interval: Interval):
     if interval.is_unison():
-        message = "This interval ({interval.name}) is unison/octave."
+        message = f"This interval ({interval.name}) is unison/octave.\n"
     if interval.is_major():
-        message = "This is a major interval ({interval.name})."
+        message = f"This is a major interval ({interval.name}).\n"
     if interval.is_minor():
-        message = "This is a minor interval ({interval.name})."
+        message = f"This is a minor interval ({interval.name}).\n"
     if interval.is_diminished():
-        message = "This is a diminished interval ({interval.name})."
+        message = f"This is a diminished interval ({interval.name}).\n"
     if interval.is_perfect():
-        message = "This is a perfect interval. ({interval.name})"
+        message = f"This is a perfect interval. ({interval.name})\n"
     if interval.is_augmented():
-        message = "This is an augmented interval. ({interval.name})"
+        message = f"This is an augmented interval. ({interval.name})\n"
     return message
 
 
