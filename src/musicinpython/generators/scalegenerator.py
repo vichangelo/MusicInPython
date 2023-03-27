@@ -372,7 +372,7 @@ def dump_scales(all_scales: list[Scale], dump_path="../data"):
         scale_dump[name_intervals] = scale.notes
 
     data_folder = os.path.abspath(dump_path)
-    file_path = os.path.join(data_folder, "scales.json")
+    file_path = os.path.join(data_folder, "all_scales.json")
     with open(file_path, "w") as scales_file:
         json.dump(scale_dump, scales_file, indent=4, sort_keys=True)
 

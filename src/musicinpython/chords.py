@@ -143,14 +143,29 @@ def get_chord(name_param="", notes_param=""):
 
 def chord_input(mode="") -> Chord:
     if mode == "O":
-        note_input = input(
-            "Enter the notes of the chord separated by spaces: "
-        )
+        while True:
+            note_input = input(
+                "Enter the notes of the chord separated by spaces: "
+            )
+            if note_input in CHORD_NOTES:
+                break
+            else:
+                print("No matching chord found in our data, please try again.")
         chord = get_chord(notes_param=note_input)
         return chord
 
     if mode == "A":
-        name_input = input("Enter the name of the chord: ")
+        while True:
+            found = False
+            name_input = input("Enter the name of the chord: ")
+            for name_interval in CHORD_NAMES_INTERVALS:
+                if name_input == name_interval.split()[0]:
+                    found = True
+            if found is True:
+                break
+            else:
+                print("No matching chord found in our data, please try again.")
+
         chord = get_chord(name_input)
         return chord
 
@@ -172,7 +187,7 @@ def display_chord_information(chord: Chord):
             return
 
 
-if __name__ == "__main__":
+def run():
     print("You're now in the chords module!")
     while True:
         decision1 = input(
@@ -189,4 +204,4 @@ if __name__ == "__main__":
             display_chord_information(chord)
         if decision1 == "E":
             break
-    exit()
+    return

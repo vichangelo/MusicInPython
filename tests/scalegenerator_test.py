@@ -58,7 +58,7 @@ def test_generate_all_scales():
 def test_dump_scales():
     all_scales = scalegen.generate_all_scales()
     data_folder = datahelper.get_data_folder()
-    scales_path = os.path.join(data_folder, "scales.json")
+    scales_path = os.path.join(data_folder, "all_scales.json")
     scalegen.dump_scales(all_scales, data_folder)
     with open(scales_path, "r") as scales_file:
         scales_str = str(json.load(scales_file))
