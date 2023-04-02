@@ -1,7 +1,0 @@
-#################
-Generator Scripts
-#################
-
-These scripts are used to generate data in .json format used by the
-program's main modules. 
-

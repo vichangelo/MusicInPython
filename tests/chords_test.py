@@ -17,9 +17,9 @@ class TestChordNamesClass:
 class TestChordIntervalsClass:
     chord_intervals = chords.get_chord_intervals("Cm7")
 
-    def test_associate_notes_to_intervals(self):
+    def test_assign_notes_to_intervals(self):
         note_list = chords.get_chord_notes("Cm7").items
-        self.chord_intervals.associate_notes_to_intervals(note_list)
+        self.chord_intervals.assign_notes_to_intervals(note_list)
         interval2 = self.chord_intervals.items[1]
         assert interval2.note2.name == "Eb"
 

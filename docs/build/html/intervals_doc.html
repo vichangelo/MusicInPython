@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intervals &mdash; musicinpython 0.5.0.dev2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chords" href="chords_doc.html" />
+    <link rel="prev" title="Notes" href="notes_doc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            musicinpython
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Scripts:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="chordgenerator_doc.html">ChordGenerator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scalegenerator_doc.html">ScaleGenerator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Libraries:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="notes_doc.html">Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intervals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-intervals">Module Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.ALL_INTERVAL_NAMES"><code class="docutils literal notranslate"><span class="pre">ALL_INTERVAL_NAMES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.ALL_INTERVAL_NAMES_UNPACKED"><code class="docutils literal notranslate"><span class="pre">ALL_INTERVAL_NAMES_UNPACKED</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.InvalidIntervalAttributeError"><code class="docutils literal notranslate"><span class="pre">InvalidIntervalAttributeError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.all_about_interval"><code class="docutils literal notranslate"><span class="pre">all_about_interval()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.interval_input"><code class="docutils literal notranslate"><span class="pre">interval_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.get_note_interface"><code class="docutils literal notranslate"><span class="pre">get_note_interface()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.get_name_interface"><code class="docutils literal notranslate"><span class="pre">get_name_interface()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intervals.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interval-summary">Interval Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval"><code class="docutils literal notranslate"><span class="pre">Interval</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interval-methods">Interval Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_unison"><code class="docutils literal notranslate"><span class="pre">Interval.is_unison()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_minor"><code class="docutils literal notranslate"><span class="pre">Interval.is_minor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_major"><code class="docutils literal notranslate"><span class="pre">Interval.is_major()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_diminished"><code class="docutils literal notranslate"><span class="pre">Interval.is_diminished()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_perfect"><code class="docutils literal notranslate"><span class="pre">Interval.is_perfect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.is_augmented"><code class="docutils literal notranslate"><span class="pre">Interval.is_augmented()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.get_second_note"><code class="docutils literal notranslate"><span class="pre">Interval.get_second_note()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.choose_name_for_interval"><code class="docutils literal notranslate"><span class="pre">Interval.choose_name_for_interval()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intervals.Interval.get_name"><code class="docutils literal notranslate"><span class="pre">Interval.get_name()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chords_doc.html">Chords</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">musicinpython</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intervals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intervals_doc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intervals">
+<h1>Intervals<a class="headerlink" href="#intervals" title="Permalink to this heading"></a></h1>
+<section id="module-intervals">
+<span id="module-summary"></span><h2>Module Summary<a class="headerlink" href="#module-intervals" title="Permalink to this heading"></a></h2>
+<p>Module with code related to musical intervals.</p>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="notes_doc.html#module-notes" title="notes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">notes</span></code></a>: Import the classes and exception of the module.</p>
+</section>
+<section id="global-variables">
+<h3>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="intervals.ALL_INTERVAL_NAMES">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">ALL_INTERVAL_NAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#intervals.ALL_INTERVAL_NAMES" title="Permalink to this definition"></a></dt>
+<dd><p>All names of intervals with enharmonics in tuples.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="intervals.ALL_INTERVAL_NAMES_UNPACKED">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">ALL_INTERVAL_NAMES_UNPACKED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#intervals.ALL_INTERVAL_NAMES_UNPACKED" title="Permalink to this definition"></a></dt>
+<dd><p>All names of intervals in order.</p>
+</dd></dl>
+
+</section>
+<section id="exceptions">
+<h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#intervals.InvalidIntervalAttributeError" title="intervals.InvalidIntervalAttributeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">InvalidIntervalAttributeError</span></code></a>: Raised when an interval’s invalid.</p>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#intervals.all_about_interval" title="intervals.all_about_interval"><code class="xref py py-func docutils literal notranslate"><span class="pre">all_about_interval()</span></code></a>: Return a message with data on an interval.</p>
+<p><a class="reference internal" href="#intervals.interval_input" title="intervals.interval_input"><code class="xref py py-func docutils literal notranslate"><span class="pre">interval_input()</span></code></a>: Receive input and transforms into an interval.</p>
+<p><a class="reference internal" href="#intervals.get_note_interface" title="intervals.get_note_interface"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_note_interface()</span></code></a>: Bridge between <cite>get_second_note</cite> and user.</p>
+<p><a class="reference internal" href="#intervals.get_name_interface" title="intervals.get_name_interface"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_name_interface()</span></code></a>: Bridge between <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_name()</span></code> and user.</p>
+<p><a class="reference internal" href="#intervals.run" title="intervals.run"><code class="xref py py-func docutils literal notranslate"><span class="pre">run()</span></code></a>: Run the module as a script.</p>
+</section>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<p><a class="reference internal" href="#intervals.Interval" title="intervals.Interval"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interval</span></code></a>: Defines intervals and their methods.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Exceptions<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="intervals.InvalidIntervalAttributeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">InvalidIntervalAttributeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Invalid</span> <span class="pre">attribute</span> <span class="pre">value</span> <span class="pre">for</span> <span class="pre">interval:</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.InvalidIntervalAttributeError" title="Permalink to this definition"></a></dt>
+<dd><p>Raised when there’s an invalid setting of an interval attribute.</p>
+<p>This exception has parameters for identifying the attribute, the
+value and a custom message.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>Functions<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="intervals.all_about_interval">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">all_about_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#intervals.Interval" title="intervals.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#intervals.all_about_interval" title="Permalink to this definition"></a></dt>
+<dd><p>Return a message containing information about an interval.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intervals.interval_input">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">interval_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#intervals.Interval" title="intervals.Interval"><span class="pre">Interval</span></a></span></span><a class="headerlink" href="#intervals.interval_input" title="Permalink to this definition"></a></dt>
+<dd><p>Handle the input of intervals’ names with a custom message.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intervals.get_note_interface">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">get_note_interface</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Note</span></span></span><a class="headerlink" href="#intervals.get_note_interface" title="Permalink to this definition"></a></dt>
+<dd><p>Interface the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_second_note()</span></code> method with the user.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intervals.get_name_interface">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">get_name_interface</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#intervals.get_name_interface" title="Permalink to this definition"></a></dt>
+<dd><p>Interface the <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_name()</span></code> method with the user.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="intervals.run">
+<span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#intervals.run" title="Permalink to this definition"></a></dt>
+<dd><p>Run the module as a script.</p>
+</dd></dl>
+
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>Classes<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="interval-summary">
+<h3>Interval Summary<a class="headerlink" href="#interval-summary" title="Permalink to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="intervals.Interval">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">intervals.</span></span><span class="sig-name descname"><span class="pre">Interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note1=&lt;musicinpython.notes.Note</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note2:</span> <span class="pre">~musicinpython.notes.Note</span> <span class="pre">=</span> <span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.Interval" title="Permalink to this definition"></a></dt>
+<dd><p>Class that defines musical intervals and their methods.</p>
+<section id="attributes">
+<h4>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h4>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="intervals.Interval.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#intervals.Interval.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the interval (e.g.:”VII”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="intervals.Interval.note1">
+<span class="sig-name descname"><span class="pre">note1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="notes_doc.html#notes.Note" title="notes.Note"><span class="pre">notes.Note</span></a></em><a class="headerlink" href="#intervals.Interval.note1" title="Permalink to this definition"></a></dt>
+<dd><p>First note of the interval.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="intervals.Interval.note2">
+<span class="sig-name descname"><span class="pre">note2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="notes_doc.html#notes.Note" title="notes.Note"><span class="pre">notes.Note</span></a></em><a class="headerlink" href="#intervals.Interval.note2" title="Permalink to this definition"></a></dt>
+<dd><p>Second note of the interval.</p>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="Permalink to this heading"></a></h4>
+<p><a class="reference internal" href="#intervals.Interval.is_unison" title="intervals.Interval.is_unison"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_unison()</span></code></a>: Check if interval is unison.</p>
+<p><a class="reference internal" href="#intervals.Interval.is_minor" title="intervals.Interval.is_minor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_minor()</span></code></a>: Check if interval is minor.</p>
+<p><a class="reference internal" href="#intervals.Interval.is_major" title="intervals.Interval.is_major"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_major()</span></code></a>: Check if interval is major.</p>
+<p><a class="reference internal" href="#intervals.Interval.is_diminished" title="intervals.Interval.is_diminished"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_diminished()</span></code></a>: Check if interval is diminished.</p>
+<p><a class="reference internal" href="#intervals.Interval.is_perfect" title="intervals.Interval.is_perfect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_perfect()</span></code></a>: Check if interval is perfect.</p>
+<p><a class="reference internal" href="#intervals.Interval.is_augmented" title="intervals.Interval.is_augmented"><code class="xref py py-meth docutils literal notranslate"><span class="pre">is_augmented()</span></code></a>: Check if interval is augmented.</p>
+<p><a class="reference internal" href="#intervals.Interval.get_second_note" title="intervals.Interval.get_second_note"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_second_note()</span></code></a>: Get the second note of the interval.</p>
+<p><a class="reference internal" href="#intervals.Interval.choose_name_for_interval" title="intervals.Interval.choose_name_for_interval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">choose_name_for_interval()</span></code></a>: Choose between two enharmonics.</p>
+<p><a class="reference internal" href="#intervals.Interval.get_name" title="intervals.Interval.get_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_name()</span></code></a>: Get the name of the interval.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name=''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note1=&lt;musicinpython.notes.Note</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note2:</span> <span class="pre">~musicinpython.notes.Note</span> <span class="pre">=</span> <span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#intervals.Interval.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate an interval.</p>
+<p>Raises <a class="reference internal" href="#intervals.InvalidIntervalAttributeError" title="intervals.InvalidIntervalAttributeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">InvalidIntervalAttributeError</span></code></a> if arguments are
+wrong type (note1 and note2) or not in appropriate list (name).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Passed to <a class="reference internal" href="#intervals.Interval.name" title="intervals.Interval.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p></li>
+<li><p><strong>note1</strong> (<a class="reference internal" href="notes_doc.html#notes.Note" title="notes.Note"><em>notes.Note</em></a>) – Passed to <a class="reference internal" href="#intervals.Interval.note1" title="intervals.Interval.note1"><code class="xref py py-attr docutils literal notranslate"><span class="pre">note1</span></code></a>.</p></li>
+<li><p><strong>note2</strong> (<a class="reference internal" href="notes_doc.html#notes.Note" title="notes.Note"><em>notes.Note</em></a>) – Passed to <a class="reference internal" href="#intervals.Interval.note2" title="intervals.Interval.note2"><code class="xref py py-attr docutils literal notranslate"><span class="pre">note2</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="interval-methods">
+<h3>Interval Methods<a class="headerlink" href="#interval-methods" title="Permalink to this heading"></a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_unison">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_unison</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_unison" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is unison/octave.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_minor">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_minor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_minor" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is in list of minor intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_major">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_major</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_major" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is in list of major intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_diminished">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_diminished</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_diminished" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is in list of diminished intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_perfect">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_perfect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_perfect" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is in list of perfect intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.is_augmented">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">is_augmented</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#intervals.Interval.is_augmented" title="Permalink to this definition"></a></dt>
+<dd><p>Check if interval is in list of augmented intervals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.get_second_note">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">get_second_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#intervals.Interval.get_second_note" title="Permalink to this definition"></a></dt>
+<dd><p>Get the second note of the interval.</p>
+<p>Generates a chromatic scale using
+<a class="reference internal" href="notes_doc.html#notes.ChromaticScaleGenerator" title="notes.ChromaticScaleGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">notes.ChromaticScaleGenerator</span></code></a>, then the index of the
+interval’s <a class="reference internal" href="#intervals.Interval.name" title="intervals.Interval.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> in <a class="reference internal" href="#intervals.ALL_INTERVAL_NAMES" title="intervals.ALL_INTERVAL_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">ALL_INTERVAL_NAMES</span></code></a> on the
+generated scale to retrieve the second note.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.choose_name_for_interval">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">choose_name_for_interval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#intervals.Interval.choose_name_for_interval" title="Permalink to this definition"></a></dt>
+<dd><p>Choose between two enharmonics to name the interval.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="intervals.Interval.get_name">
+<span class="sig-prename descclassname"><span class="pre">Interval.</span></span><span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#intervals.Interval.get_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the name of the interval based on its two notes.</p>
+<p>First, generates a chromatic scale using
+<a class="reference internal" href="notes_doc.html#notes.ChromaticScaleGenerator" title="notes.ChromaticScaleGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">notes.ChromaticScaleGenerator</span></code></a>, then extracts the note
+names using a list comprehension. Afterwards, gets the index of
+the interval’s second note in the scale and use it on
+<a class="reference internal" href="#intervals.ALL_INTERVAL_NAMES" title="intervals.ALL_INTERVAL_NAMES"><code class="xref py py-data docutils literal notranslate"><span class="pre">ALL_INTERVAL_NAMES</span></code></a> to get the corresponding interval’s
+name, calling <a class="reference internal" href="#intervals.Interval.choose_name_for_interval" title="intervals.Interval.choose_name_for_interval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">choose_name_for_interval()</span></code></a> if the interval’s
+name has an enharmonic.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notes_doc.html" class="btn btn-neutral float-left" title="Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chords_doc.html" class="btn btn-neutral float-right" title="Chords" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Victor Angelo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

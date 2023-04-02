@@ -13,7 +13,7 @@ Global variables
    All names of intervals with enharmonics in tuples.
 
 .. data:: ALL_INTERVAL_NAMES_UNPACKED
-   :type: list
+   :type: list[str]
 
    All names of intervals in order.
 
@@ -103,21 +103,49 @@ class Interval:
        The name of the interval (e.g.:"VII").
 
     .. attribute:: note1
-       :type: Note
+       :type: notes.Note
 
        First note of the interval.
 
     .. attribute:: note2
-       :type: Note
+       :type: notes.Note
 
        Second note of the interval.
 
     Methods
     -------
     :meth:`is_unison`: Check if interval is unison.
+
+    :meth:`is_minor`: Check if interval is minor.
+
+    :meth:`is_major`: Check if interval is major.
+
+    :meth:`is_diminished`: Check if interval is diminished.
+
+    :meth:`is_perfect`: Check if interval is perfect.
+
+    :meth:`is_augmented`: Check if interval is augmented.
+
+    :meth:`get_second_note`: Get the second note of the interval.
+
+    :meth:`choose_name_for_interval`: Choose between two enharmonics.
+
+    :meth:`get_name`: Get the name of the interval.
     """
 
     def __init__(self, name="", note1=notes.Note("C"), note2: notes.Note = ""):
+        """Instantiate an interval.
+
+        Raises :exc:`InvalidIntervalAttributeError` if arguments are
+        wrong type (note1 and note2) or not in appropriate list (name).
+
+        :param name: Passed to :attr:`name`.
+        :type name: str
+        :param note1: Passed to :attr:`note1`.
+        :type note1: notes.Note
+        :param note2: Passed to :attr:`note2`.
+        :type note2: notes.Note
+        """
         if name not in ALL_INTERVAL_NAMES_UNPACKED and name != "":
             raise InvalidIntervalAttributeError("name", name)
         if type(note1) != notes.Note:
@@ -129,43 +157,56 @@ class Interval:
         self.note1 = note1
         self.note2 = note2
 
-    def is_unison(self):
+    def is_unison(self) -> bool:
+        """Check if interval is unison/octave."""
         if self.name == "I":
             return True
         else:
             return False
 
-    def is_major(self):
+    def is_major(self) -> bool:
+        """Check if interval is in list of major intervals."""
         if self.name in ["II", "III", "VI", "VII"]:
             return True
         else:
             return False
 
-    def is_minor(self):
+    def is_minor(self) -> bool:
+        """Check if interval is in list of minor intervals."""
         if self.name in ["bII", "bIII", "bVI", "bVII"]:
             return True
         else:
             return False
 
-    def is_diminished(self):
+    def is_diminished(self) -> bool:
+        """Check if interval is in list of diminished intervals."""
         if self.name in ["bIV", "bV"]:
             return True
         else:
             return False
 
-    def is_perfect(self):
+    def is_perfect(self) -> bool:
+        """Check if interval is in list of perfect intervals."""
         if self.name in ["IV", "V"]:
             return True
         else:
             return False
 
-    def is_augmented(self):
+    def is_augmented(self) -> bool:
+        """Check if interval is in list of augmented intervals."""
         if self.name in ["#II", "#IV", "#V", "#VI"]:
             return True
         else:
             return False
 
     def get_second_note(self):
+        """Get the second note of the interval.
+
+        Generates a chromatic scale using
+        :class:`notes.ChromaticScaleGenerator`, then the index of the
+        interval's :attr:`name` in :data:`ALL_INTERVAL_NAMES` on the
+        generated scale to retrieve the second note.
+        """
         chromatic_generator = notes.ChromaticScaleGenerator(self.note1)
         chromatic_generator.generate()
         for item in ALL_INTERVAL_NAMES:
@@ -177,18 +218,28 @@ class Interval:
         self.note2 = chromatic_generator.notes[index]
 
     def choose_name_for_interval(self):
-        if self.name == ("#II", "bIII"):
-            self.name = "bIII"
-        if self.name == ("III", "bIV"):
-            self.name = "III"
-        if self.name == ("#IV", "bV"):
-            self.name = "bV"
-        if self.name == ("#V", "bVI"):
-            self.name = "#V"
-        if self.name == ("#VI", "bVII"):
-            self.name = "bVII"
+        """Choose between two enharmonics to name the interval."""
+        enharmonics_0 = [("III", "bIV"), ("#V", "bVI")]
+        enharmonics_1 = [("#II", "bIII"), ("#VI", "bVII"), ("#IV", "bV")]
+
+        for interv in enharmonics_0:
+            if self.name == interv:
+                self.name = interv[0]
+        for interv in enharmonics_1:
+            if self.name == interv:
+                self.name = interv[1]
 
     def get_name(self):
+        """Get the name of the interval based on its two notes.
+
+        First, generates a chromatic scale using
+        :class:`notes.ChromaticScaleGenerator`, then extracts the note
+        names using a list comprehension. Afterwards, gets the index of
+        the interval's second note in the scale and use it on
+        :data:`ALL_INTERVAL_NAMES` to get the corresponding interval's
+        name, calling :meth:`choose_name_for_interval` if the interval's
+        name has an enharmonic.
+        """
         chromatic_generator = notes.ChromaticScaleGenerator(self.note1)
         chromatic_generator.generate()
         chromatic_scale_names = [
@@ -205,7 +256,8 @@ class Interval:
             self.choose_name_for_interval()
 
 
-def all_about_interval(interval: Interval):
+def all_about_interval(interval: Interval) -> str:
+    """Return a message containing information about an interval."""
     if interval.is_unison():
         message = f"This interval ({interval.name}) is unison/octave.\n"
     if interval.is_major():
@@ -221,7 +273,8 @@ def all_about_interval(interval: Interval):
     return message
 
 
-def interval_input(message):
+def interval_input(message: str) -> Interval:
+    """Handle the input of intervals' names with a custom message."""
     while True:
         try:
             interval_name = input(message)
@@ -233,7 +286,8 @@ def interval_input(message):
     return interval_obj
 
 
-def get_note_interface():
+def get_note_interface() -> notes.Note:
+    """Interface the :meth:`get_second_note` method with the user."""
     first_note = notes.note_input(
         "\nPlease enter the first note of the" + " interval. "
     )
@@ -245,7 +299,8 @@ def get_note_interface():
     return interval_obj.note2
 
 
-def get_name_interface():
+def get_name_interface() -> tuple[str]:
+    """Interface the :meth:`get_name` method with the user."""
     first_note = notes.note_input(
         "\nInput the first note of the " + "interval, if you may. "
     )
@@ -256,6 +311,7 @@ def get_name_interface():
 
 
 def run():
+    """Run the module as a script."""
     print("\nYou're now into the intervals module!")
     while True:
         decision2 = input(
@@ -283,3 +339,4 @@ def run():
 
         if decision2 == "E":
             break
+    return

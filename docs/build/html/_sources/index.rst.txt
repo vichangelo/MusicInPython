@@ -18,12 +18,14 @@ Indices and tables
    :maxdepth: 2
    :caption: Scripts:
 
-   chordgenerator
-   scalegenerator
+   chordgenerator_doc
+   scalegenerator_doc
 
 .. toctree::
    :maxdepth: 2
    :caption: Libraries:
 
-   notes
-   intervals
+   notes_doc
+   intervals_doc
+   chords_doc
+   scales_doc

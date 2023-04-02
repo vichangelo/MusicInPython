@@ -3,7 +3,7 @@
 Global variables
 ================
 .. data:: NATURAL_NOTES
-   :type: list
+   :type: list[str]
 
    Contains all 7 natural notes.
 
@@ -13,17 +13,17 @@ Global variables
    Contains all accidents with enharmonics in tuples.
 
 .. data:: ALL_NOTE_NAMES
-   :type: list
+   :type: list[str]
 
    Contains all note names, including sharps and flats.
 
 .. data:: FLAT_KEYS
-   :type: list
+   :type: list[str]
 
    Contains scale keys that have flats.
 
 .. data:: SHARP_KEYS
-   :type: list
+   :type: list[str]
 
    Contains scale keys that have sharps.
 
@@ -35,11 +35,13 @@ Functions
 =========
 :func:`enharmonize_note`: Get a note's enharmonic.
 
-:func:`note_input`: Receives input and turns into a Note object.
+:func:`note_input`: Receive input and turns into a Note object.
 
-:func:`display_chromatic_scale`: Outputs a message with chromatic scale.
+:func:`display_chromatic_scale`: Output a message with chromatic scale.
 
-:func:`all_about_note`: Returns all information on a note.
+:func:`all_about_note`: Return all information on a note.
+
+:func:`run`: Run the module as a script.
 
 Classes
 =======
@@ -106,7 +108,7 @@ class Note:
     .. attribute:: name
        :type: str
 
-       The name of the name (e.g.: "D#").
+       The name of the note (e.g.: "D#").
 
     .. attribute:: accident_sign
        :type: str
@@ -209,7 +211,7 @@ class ChromaticScaleGenerator:
     """
 
     def __init__(self, root: Note):
-        """Initializes the generator with an empty note list.
+        """Initialize the generator with an empty note list.
 
         :param root: Passed to :attr:`root`.
         :type root: Note
@@ -312,6 +314,7 @@ def all_about_note(note_obj: Note) -> str:
 
 
 def run():
+    """Run the module as a script."""
     print("\nYou're now into the notes module!")
     while True:
         decision = input(
@@ -324,3 +327,4 @@ def run():
             print(display_chromatic_scale(note_obj))
         if decision == "E":
             break
+    return

@@ -18,11 +18,17 @@ def test_get_scale_notes():
 
 class TestScaleNamesClass:
     cmaj_names = scales.get_scale_names("C D E F G A B")
+    ddor_names = scales.get_scale_names("D E F G A B C")
 
-    def test_get_alternative_names(self):
+    def test_get_alternative_names_no_variants(self):
         notes_str = "C D E F G A B"
         self.cmaj_names.get_alternative_names(notes_str)
         assert "C Ionian" in self.cmaj_names.items
+
+    def test_get_alternative_names_variants(self):
+        notes_str = "D E F G A B C"
+        self.ddor_names.get_alternative_names(notes_str, True)
+        assert "D Dorian" in self.ddor_names.items
 
     def test_get_names_information(self):
         message = self.cmaj_names.get_names_information()
@@ -32,9 +38,9 @@ class TestScaleNamesClass:
 class TestScaleIntervalsClass:
     cmaj_intervals = scales.get_scale_intervals("C D E F G A B")
 
-    def test_associate_notes_to_intervals(self):
+    def test_assign_notes_to_intervals(self):
         note_list = scales.get_scale_notes("C Major").items
-        self.cmaj_intervals.associate_notes_to_intervals(note_list)
+        self.cmaj_intervals.assign_notes_to_intervals(note_list)
         interval7 = self.cmaj_intervals.items[6]
         assert interval7.note2.name == "B"
 
