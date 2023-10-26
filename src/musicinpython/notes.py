@@ -186,6 +186,8 @@ def enharmonize_note(note_obj: Note) -> Note:
                 return Note(item[1])
             elif note_obj.name in item[1]:
                 return Note(item[0])
+    else:
+        return note_obj
 
 
 class ChromaticScaleGenerator:
